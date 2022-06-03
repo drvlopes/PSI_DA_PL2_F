@@ -101,6 +101,7 @@
     <Property Name="Cidade" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CodPostal" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Pais" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rua" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Restaurantes">
     <Key>
@@ -143,7 +144,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MetPagamento" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ativo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ItemMenus">
     <Key>
@@ -163,7 +164,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ativo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Pessoas_Trabalhador">
     <Key>
@@ -477,6 +478,7 @@
           <Property Name="Pais" Type="String" Nullable="false" />
           <NavigationProperty Name="Pessoas" Relationship="RestGuest.PessoaMorada" FromRole="Morada" ToRole="Pessoa" />
           <NavigationProperty Name="Restaurantes" Relationship="RestGuest.MoradaRestaurante" FromRole="Morada" ToRole="Restaurante" />
+          <Property Name="Rua" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Cliente" BaseType="RestGuest.Pessoa">
           <Property Name="TotalGasto" Type="String" Nullable="false" />
@@ -616,7 +618,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MetPagamento" Type="String" Nullable="false" />
-          <Property Name="Ativo" Type="String" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Pagamentos" Relationship="RestGuest.MetodoPagamentoPagamento" FromRole="MetodoPagamento" ToRole="Pagamento" />
         </EntityType>
         <Association Name="MetodoPagamentoPagamento">
@@ -652,7 +654,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" />
-          <Property Name="Ativo" Type="String" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ItemMenus" Relationship="RestGuest.CategoriaItemMenu" FromRole="Categoria" ToRole="ItemMenu" />
         </EntityType>
         <Association Name="CategoriaItemMenu">
@@ -737,6 +739,7 @@
           <ScalarProperty Name="Cidade" ColumnName="Cidade" />
           <ScalarProperty Name="CodPostal" ColumnName="CodPostal" />
           <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Rua" ColumnName="Rua" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

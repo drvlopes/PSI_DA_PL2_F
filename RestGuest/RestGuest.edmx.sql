@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/18/2022 20:36:57
+-- Date Created: 06/01/2022 18:15:07
 -- Generated from EDMX file: C:\Users\TbpT\Desktop\ipl\S2\DA\PSI_DA_PL2_F\RestGuest\RestGuest.edmx
 -- --------------------------------------------------
 
@@ -17,12 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_MoradaPessoa]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Pessoas] DROP CONSTRAINT [FK_MoradaPessoa];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MoradaRestaurante]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Restaurantes] DROP CONSTRAINT [FK_MoradaRestaurante];
-GO
 IF OBJECT_ID(N'[dbo].[FK_RestauranteTrabalhador]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Trabalhador] DROP CONSTRAINT [FK_RestauranteTrabalhador];
 GO
@@ -58,6 +52,12 @@ IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedido_ItemMenu]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedido_Pedido]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ItemMenuPedido] DROP CONSTRAINT [FK_ItemMenuPedido_Pedido];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PessoaMorada]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pessoas] DROP CONSTRAINT [FK_PessoaMorada];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MoradaRestaurante]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Restaurantes] DROP CONSTRAINT [FK_MoradaRestaurante];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Trabalhador_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Trabalhador] DROP CONSTRAINT [FK_Trabalhador_inherits_Pessoa];
@@ -128,7 +128,8 @@ CREATE TABLE [dbo].[Moradas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Cidade] nvarchar(max)  NOT NULL,
     [CodPostal] nvarchar(max)  NOT NULL,
-    [Pais] nvarchar(max)  NOT NULL
+    [Pais] nvarchar(max)  NOT NULL,
+    [Rua] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -171,7 +172,7 @@ GO
 CREATE TABLE [dbo].[MetodoPagamentos] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [MetPagamento] nvarchar(max)  NOT NULL,
-    [Ativo] nvarchar(max)  NOT NULL
+    [Ativo] bit  NOT NULL
 );
 GO
 
@@ -191,7 +192,7 @@ GO
 CREATE TABLE [dbo].[Categorias] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
-    [Ativo] nvarchar(max)  NOT NULL
+    [Ativo] bit  NOT NULL
 );
 GO
 

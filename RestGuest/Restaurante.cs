@@ -21,6 +21,11 @@ namespace RestGuest
             this.Pedidos = new HashSet<Pedido>();
             this.ItemMenus = new HashSet<ItemMenu>();
         }
+
+        public override string ToString()
+        {
+            return Nome + $": Funcinarios({Trabalhadores.Count})";
+        }
     
         public int Id { get; set; }
         public string Nome { get; set; }
