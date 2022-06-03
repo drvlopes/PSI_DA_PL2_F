@@ -25,6 +25,7 @@ namespace RestGuest
         public string Cidade { get; set; }
         public string CodPostal { get; set; }
         public string Pais { get; set; }
+        public string Rua { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pessoa> Pessoas { get; set; }
