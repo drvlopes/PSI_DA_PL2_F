@@ -342,6 +342,15 @@ namespace RestGuest
             cbPesquisa.SelectedIndex = 0;
         }
 
+<<<<<<< HEAD
+=======
+        private void cbMetodosPagamento_MouseLeave(object sender, EventArgs e)
+        {
+            cbMetodosPagamento.SelectedIndex = -1;
+            btRemoverMetodo.Enabled = false;
+        }
+
+>>>>>>> feature
         private void btAdicionarCategoria_Click(object sender, EventArgs e)
         {
             if (tbAdicionarCategoria.Text.Trim() == "")
@@ -363,7 +372,11 @@ namespace RestGuest
         private void cbCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbCategorias.SelectedIndex != -1)
+<<<<<<< HEAD
                 btRemoverCategoria.Enabled = true;
+=======
+                btAdicionarCategoria.Enabled = true;
+>>>>>>> feature
         }
 
         private void btRemoverCategoria_Click(object sender, EventArgs e)
@@ -382,6 +395,7 @@ namespace RestGuest
 
             btRemoverCategoria.Enabled = false;
         }
+<<<<<<< HEAD
 
         private void cbCategorias_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -397,5 +411,7 @@ namespace RestGuest
 
             restGuest.SaveChanges();
         }
+=======
+>>>>>>> feature
     }
 }
