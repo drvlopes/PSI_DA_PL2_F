@@ -342,12 +342,6 @@ namespace RestGuest
             cbPesquisa.SelectedIndex = 0;
         }
 
-        private void cbMetodosPagamento_MouseLeave(object sender, EventArgs e)
-        {
-            cbMetodosPagamento.SelectedIndex = -1;
-            btRemoverMetodo.Enabled = false;
-        }
-
         private void btAdicionarCategoria_Click(object sender, EventArgs e)
         {
             if (tbAdicionarCategoria.Text.Trim() == "")
@@ -369,7 +363,7 @@ namespace RestGuest
         private void cbCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbCategorias.SelectedIndex != -1)
-                btAdicionarCategoria.Enabled = true;
+                btRemoverCategoria.Enabled = true;
         }
 
         private void btRemoverCategoria_Click(object sender, EventArgs e)
@@ -387,6 +381,21 @@ namespace RestGuest
             popularCheckboxCategorias();
 
             btRemoverCategoria.Enabled = false;
+        }
+
+        private void cbCategorias_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (cbCategorias.SelectedIndex == -1)
+                return;
+
+            Categoria categoria = cbCategorias.SelectedItem as Categoria;
+
+            if (cbCategorias.GetItemChecked(cbCategorias.SelectedIndex))
+                categoria.Ativo = false;
+            else
+                categoria.Ativo = true;
+
+            restGuest.SaveChanges();
         }
     }
 }

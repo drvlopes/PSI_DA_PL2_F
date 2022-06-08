@@ -195,7 +195,6 @@
             this.cbMetodosPagamento.TabIndex = 14;
             this.cbMetodosPagamento.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbMetodosPagamento_ItemCheck);
             this.cbMetodosPagamento.SelectedIndexChanged += new System.EventHandler(this.cbMetodosPagamento_SelectedIndexChanged);
-            this.cbMetodosPagamento.MouseLeave += new System.EventHandler(this.cbMetodosPagamento_MouseLeave);
             // 
             // label6
             // 
@@ -301,6 +300,7 @@
             this.cbCategorias.Name = "cbCategorias";
             this.cbCategorias.Size = new System.Drawing.Size(214, 199);
             this.cbCategorias.TabIndex = 28;
+            this.cbCategorias.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbCategorias_ItemCheck);
             this.cbCategorias.SelectedIndexChanged += new System.EventHandler(this.cbCategorias_SelectedIndexChanged);
             // 
             // btRemoverRestaurante
