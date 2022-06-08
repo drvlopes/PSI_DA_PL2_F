@@ -55,7 +55,7 @@
             this.tbMetodoPagamento = new System.Windows.Forms.TextBox();
             this.cbCategorias = new System.Windows.Forms.CheckedListBox();
             this.btRemoverRestaurante = new System.Windows.Forms.Button();
-            this.btNovoCliente = new System.Windows.Forms.Button();
+            this.btNovoRestaurante = new System.Windows.Forms.Button();
             this.btEditar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
@@ -68,6 +68,7 @@
             this.lbRestaurantes.Name = "lbRestaurantes";
             this.lbRestaurantes.Size = new System.Drawing.Size(271, 368);
             this.lbRestaurantes.TabIndex = 0;
+            this.lbRestaurantes.SelectedIndexChanged += new System.EventHandler(this.lbRestaurantes_SelectedIndexChanged);
             // 
             // cbPesquisa
             // 
@@ -79,6 +80,7 @@
             this.cbPesquisa.Name = "cbPesquisa";
             this.cbPesquisa.Size = new System.Drawing.Size(143, 21);
             this.cbPesquisa.TabIndex = 1;
+            this.cbPesquisa.SelectedIndexChanged += new System.EventHandler(this.cbPesquisa_SelectedIndexChanged);
             // 
             // tbPesquisa
             // 
@@ -86,6 +88,7 @@
             this.tbPesquisa.Name = "tbPesquisa";
             this.tbPesquisa.Size = new System.Drawing.Size(234, 20);
             this.tbPesquisa.TabIndex = 2;
+            this.tbPesquisa.TextChanged += new System.EventHandler(this.tbPesquisa_TextChanged);
             // 
             // btPesquisa
             // 
@@ -95,6 +98,7 @@
             this.btPesquisa.TabIndex = 3;
             this.btPesquisa.Text = "Limpar pesquisa";
             this.btPesquisa.UseVisualStyleBackColor = true;
+            this.btPesquisa.Click += new System.EventHandler(this.btPesquisa_Click);
             // 
             // label1
             // 
@@ -191,6 +195,7 @@
             this.cbMetodosPagamento.TabIndex = 14;
             this.cbMetodosPagamento.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbMetodosPagamento_ItemCheck);
             this.cbMetodosPagamento.SelectedIndexChanged += new System.EventHandler(this.cbMetodosPagamento_SelectedIndexChanged);
+            this.cbMetodosPagamento.MouseLeave += new System.EventHandler(this.cbMetodosPagamento_MouseLeave);
             // 
             // label6
             // 
@@ -227,6 +232,7 @@
             this.btAdicionarCategoria.TabIndex = 20;
             this.btAdicionarCategoria.Text = "Adicionar";
             this.btAdicionarCategoria.UseVisualStyleBackColor = true;
+            this.btAdicionarCategoria.Click += new System.EventHandler(this.btAdicionarCategoria_Click);
             // 
             // btRemoverCategoria
             // 
@@ -237,6 +243,7 @@
             this.btRemoverCategoria.TabIndex = 21;
             this.btRemoverCategoria.Text = "Remover";
             this.btRemoverCategoria.UseVisualStyleBackColor = true;
+            this.btRemoverCategoria.Click += new System.EventHandler(this.btRemoverCategoria_Click);
             // 
             // label7
             // 
@@ -288,11 +295,13 @@
             // 
             // cbCategorias
             // 
+            this.cbCategorias.CheckOnClick = true;
             this.cbCategorias.FormattingEnabled = true;
             this.cbCategorias.Location = new System.Drawing.Point(623, 12);
             this.cbCategorias.Name = "cbCategorias";
             this.cbCategorias.Size = new System.Drawing.Size(214, 199);
             this.cbCategorias.TabIndex = 28;
+            this.cbCategorias.SelectedIndexChanged += new System.EventHandler(this.cbCategorias_SelectedIndexChanged);
             // 
             // btRemoverRestaurante
             // 
@@ -304,15 +313,15 @@
             this.btRemoverRestaurante.UseVisualStyleBackColor = true;
             this.btRemoverRestaurante.Click += new System.EventHandler(this.btRemoverRestaurante_Click);
             // 
-            // btNovoCliente
+            // btNovoRestaurante
             // 
-            this.btNovoCliente.Location = new System.Drawing.Point(6, 179);
-            this.btNovoCliente.Name = "btNovoCliente";
-            this.btNovoCliente.Size = new System.Drawing.Size(104, 38);
-            this.btNovoCliente.TabIndex = 30;
-            this.btNovoCliente.Text = "Novo Restaurante";
-            this.btNovoCliente.UseVisualStyleBackColor = true;
-            this.btNovoCliente.Click += new System.EventHandler(this.btNovoCliente_Click);
+            this.btNovoRestaurante.Location = new System.Drawing.Point(6, 179);
+            this.btNovoRestaurante.Name = "btNovoRestaurante";
+            this.btNovoRestaurante.Size = new System.Drawing.Size(104, 38);
+            this.btNovoRestaurante.TabIndex = 30;
+            this.btNovoRestaurante.Text = "Novo Restaurante";
+            this.btNovoRestaurante.UseVisualStyleBackColor = true;
+            this.btNovoRestaurante.Click += new System.EventHandler(this.btNovoRestaurante_Click);
             // 
             // btEditar
             // 
@@ -322,11 +331,12 @@
             this.btEditar.TabIndex = 29;
             this.btEditar.Text = "Editar";
             this.btEditar.UseVisualStyleBackColor = true;
+            this.btEditar.Click += new System.EventHandler(this.btEditar_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btRemoverRestaurante);
-            this.groupBox1.Controls.Add(this.btNovoCliente);
+            this.groupBox1.Controls.Add(this.btNovoRestaurante);
             this.groupBox1.Controls.Add(this.btEditar);
             this.groupBox1.Controls.Add(this.tbRua);
             this.groupBox1.Controls.Add(this.tbCidade);
@@ -407,7 +417,7 @@
         private System.Windows.Forms.TextBox tbMetodoPagamento;
         private System.Windows.Forms.CheckedListBox cbCategorias;
         private System.Windows.Forms.Button btRemoverRestaurante;
-        private System.Windows.Forms.Button btNovoCliente;
+        private System.Windows.Forms.Button btNovoRestaurante;
         private System.Windows.Forms.Button btEditar;
         private System.Windows.Forms.GroupBox groupBox1;
     }

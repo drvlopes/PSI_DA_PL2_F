@@ -42,6 +42,7 @@ namespace RestGuest
                     if(MessageBox.Show("Preencha todos os campos antes de guardar!", "Guardar Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         modoCriar(false, false);
+                        popularListBox();
                         btNovoCliente.Text = "Novo Cliente";
                     }
 
@@ -67,7 +68,7 @@ namespace RestGuest
                 else if (result == DialogResult.Cancel)
                 {
                     modoCriar(false, false);
-
+                    popularListBox();
                     btNovoCliente.Text = "Novo Cliente";
 
                     return;
@@ -103,6 +104,8 @@ namespace RestGuest
             lbClientes.DataSource = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>();
             lbClientes.ClearSelected();
             clearTexbox();
+            btEditar.Enabled = false;
+            btRemover.Enabled = false;
         }
 
         private void clearTexbox()
@@ -128,13 +131,15 @@ namespace RestGuest
         private void modoCriar(bool modo, bool editar)
         {
             if (!editar)
-                btEditar.Enabled = !modo;
+                btEditar.Enabled = false;
+            else
+                btEditar.Enabled = true;
 
             lbClientes.Enabled = !modo;
             cbPesquisa.Enabled = !modo;
             tbPesquisa.Enabled = !modo;
             btPesquisa.Enabled = !modo;
-            btRemover.Enabled = !modo;
+            //btRemover.Enabled = !modo;
 
             tbNome.Enabled = modo;
             tbRua.Enabled = modo;
@@ -148,31 +153,33 @@ namespace RestGuest
 
         private void tbPesquisa_TextChanged(object sender, EventArgs e)
         {
-            IEnumerable<Cliente> teste;
+            btEditar.Enabled = false;
+            clearTexbox();
+
+            IEnumerable<Cliente> pesquisa;
 
             if(cbPesquisa.SelectedIndex == 0)
-                teste = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Nome.ToUpper().Contains(tbPesquisa.Text.ToUpper()));
+                pesquisa = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Nome.ToUpper().Contains(tbPesquisa.Text.ToUpper()));
             else if(cbPesquisa.SelectedIndex == 1)
-                teste = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Telemovel.Contains(tbPesquisa.Text));
+                pesquisa = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Telemovel.Contains(tbPesquisa.Text));
             else
-                teste = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.NumContribuinte.Contains(tbPesquisa.Text));
+                pesquisa = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.NumContribuinte.Contains(tbPesquisa.Text));
 
-            if (teste.Count() != 0)
-                lbClientes.DataSource = teste.ToList<Cliente>();
+            if (pesquisa.Count() != 0)
+                lbClientes.DataSource = pesquisa.ToList<Cliente>();
             else
                 lbClientes.DataSource = null;
         }
 
         private void btRemover_Click(object sender, EventArgs e)
         {
-            Pessoa cliente = lbClientes.SelectedItem as Cliente;
+            Cliente cliente = lbClientes.SelectedItem as Cliente;
 
-            var result = MessageBox.Show($"Deseja remover o cliente {cliente.Nome}?", "Remover cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show($"Deseja remover o cliente {cliente.Nome}?", "Remover Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.No)
                 return;
 
-            
             Morada morada = cliente.Morada;
 
             restGuest.Pessoas.Remove(cliente);
@@ -184,9 +191,10 @@ namespace RestGuest
 
         private void lbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btEditar.Enabled = false;
             if (!(lbClientes.SelectedItem is Cliente cliente))
                 return;
-
+            btEditar.Enabled = true;
             Morada morada = cliente.Morada;
 
             tbNome.Text = cliente.Nome;
@@ -209,6 +217,7 @@ namespace RestGuest
                 modoCriar(true, true);
                 btEditar.Text = "Guardar/Cancelar";
                 btNovoCliente.Enabled = false;
+                //btEditar.Enabled = true;
             }
             else
             {

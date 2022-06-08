@@ -21,16 +21,15 @@ namespace RestGuest
             this.Pedidos = new HashSet<Pedido>();
             this.ItemMenus = new HashSet<ItemMenu>();
         }
-
-        public override string ToString()
-        {
-            return Nome + $": Funcinarios({Trabalhadores.Count})";
-        }
     
         public int Id { get; set; }
         public string Nome { get; set; }
-        public Nullable<int> IdMorada { get; set; }
-    
+
+        public override string ToString()
+        {
+            return $"{Nome} ({Trabalhadores.Count})";
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Trabalhador> Trabalhadores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

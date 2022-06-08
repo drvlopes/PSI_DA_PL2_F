@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/01/2022 18:15:07
+-- Date Created: 06/08/2022 17:20:31
 -- Generated from EDMX file: C:\Users\TbpT\Desktop\ipl\S2\DA\PSI_DA_PL2_F\RestGuest\RestGuest.edmx
 -- --------------------------------------------------
 
@@ -53,8 +53,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedido_Pedido]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ItemMenuPedido] DROP CONSTRAINT [FK_ItemMenuPedido_Pedido];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PessoaMorada]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Pessoas] DROP CONSTRAINT [FK_PessoaMorada];
+IF OBJECT_ID(N'[dbo].[FK_MoradaPessoa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Pessoas] DROP CONSTRAINT [FK_MoradaPessoa];
 GO
 IF OBJECT_ID(N'[dbo].[FK_MoradaRestaurante]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Restaurantes] DROP CONSTRAINT [FK_MoradaRestaurante];
@@ -119,7 +119,8 @@ CREATE TABLE [dbo].[Pessoas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
     [Telemovel] nvarchar(max)  NOT NULL,
-    [IdMorada] int  NULL
+    [IdMorada] int  NULL,
+    [Morada_Id] int  NOT NULL
 );
 GO
 
@@ -137,7 +138,7 @@ GO
 CREATE TABLE [dbo].[Restaurantes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
-    [IdMorada] int  NULL
+    [Morada_Id] int  NOT NULL
 );
 GO
 
@@ -481,25 +482,25 @@ ON [dbo].[ItemMenuPedido]
     ([Pedidos_Id]);
 GO
 
--- Creating foreign key on [IdMorada] in table 'Pessoas'
+-- Creating foreign key on [Morada_Id] in table 'Pessoas'
 ALTER TABLE [dbo].[Pessoas]
-ADD CONSTRAINT [FK_PessoaMorada]
-    FOREIGN KEY ([IdMorada])
+ADD CONSTRAINT [FK_MoradaPessoa]
+    FOREIGN KEY ([Morada_Id])
     REFERENCES [dbo].[Moradas]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_PessoaMorada'
-CREATE INDEX [IX_FK_PessoaMorada]
+-- Creating non-clustered index for FOREIGN KEY 'FK_MoradaPessoa'
+CREATE INDEX [IX_FK_MoradaPessoa]
 ON [dbo].[Pessoas]
-    ([IdMorada]);
+    ([Morada_Id]);
 GO
 
--- Creating foreign key on [IdMorada] in table 'Restaurantes'
+-- Creating foreign key on [Morada_Id] in table 'Restaurantes'
 ALTER TABLE [dbo].[Restaurantes]
 ADD CONSTRAINT [FK_MoradaRestaurante]
-    FOREIGN KEY ([IdMorada])
+    FOREIGN KEY ([Morada_Id])
     REFERENCES [dbo].[Moradas]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -508,7 +509,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_MoradaRestaurante'
 CREATE INDEX [IX_FK_MoradaRestaurante]
 ON [dbo].[Restaurantes]
-    ([IdMorada]);
+    ([Morada_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Pessoas_Trabalhador'
