@@ -177,7 +177,6 @@ namespace RestGuest
 
             restGuest.SaveChanges();
             popularListBoxRestaurante();
-            clearTexbox();
         }
 
         private void btAdicionarPagamento_Click(object sender, EventArgs e)

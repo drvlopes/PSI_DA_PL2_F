@@ -40,5 +40,13 @@ namespace RestGuest
             formGestaoIndividualRestaurantes.Closed += (s, args) => this.Enabled = true;
             formGestaoIndividualRestaurantes.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormGestaoMenu formGestaoMenu = new FormGestaoMenu();
+            this.Enabled = false;
+            formGestaoMenu.Closed += (s, args) => this.Enabled = true;
+            formGestaoMenu.Show();
+        }
     }
 }

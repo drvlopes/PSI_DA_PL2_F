@@ -82,6 +82,12 @@
     <Compile Include="FormGestaoIndividualRestaurante.Designer.cs">
       <DependentUpon>FormGestaoIndividualRestaurante.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGestaoMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestaoMenu.Designer.cs">
+      <DependentUpon>FormGestaoMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <EmbeddedResource Include="FormGestaoIndividualRestaurante.resx">
       <DependentUpon>FormGestaoIndividualRestaurante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormGestaoMenu.resx">
+      <DependentUpon>FormGestaoMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +158,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Cliente.datasource" />
@@ -173,6 +183,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Screenshot_74.png" />
     <Content Include="RestGuest.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RestGuest.Context.cs</LastGenOutput>

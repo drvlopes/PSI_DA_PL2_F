@@ -24,11 +24,16 @@ namespace RestGuest
         public int Id { get; set; }
         public int IdCategoria { get; set; }
         public string Nome { get; set; }
-        public string Fotografia { get; set; }
+        public byte[] Fotografia { get; set; }
         public string Ingredientes { get; set; }
         public string Preco { get; set; }
-        public string Ativo { get; set; }
-    
+        public bool Ativo { get; set; }
+
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restaurante> Restaurantes { get; set; }

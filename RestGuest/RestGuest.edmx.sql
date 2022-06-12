@@ -2,7 +2,6 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
-<<<<<<< Updated upstream
 -- Date Created: 06/08/2022 17:20:31
 -- Generated from EDMX file: C:\Users\TbpT\Desktop\ipl\S2\DA\PSI_DA_PL2_F\RestGuest\RestGuest.edmx
 =======
@@ -187,10 +186,10 @@ CREATE TABLE [dbo].[ItemMenus] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [IdCategoria] int  NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
-    [Fotografia] nvarchar(max)  NOT NULL,
+    [Fotografia] varbinary(max)  NOT NULL,
     [Ingredientes] nvarchar(max)  NOT NULL,
     [Preco] nvarchar(max)  NOT NULL,
-    [Ativo] nvarchar(max)  NOT NULL
+    [Ativo] bit  NOT NULL
 );
 GO
 

@@ -23,16 +23,12 @@ namespace RestGuest
         public int Id { get; set; }
         public string MetPagamento { get; set; }
         public bool Ativo { get; set; }
-<<<<<<< Updated upstream
 
         public override string ToString()
         {
             return MetPagamento;
         }
 
-=======
-    
->>>>>>> Stashed changes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagamento> Pagamentos { get; set; }
     }

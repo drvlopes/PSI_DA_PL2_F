@@ -427,6 +427,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FormGestaoGeralRestaurantes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormGestaoGeralRestaurantes";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

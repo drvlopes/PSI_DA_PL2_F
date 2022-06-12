@@ -154,10 +154,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdCategoria" Type="int" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Fotografia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fotografia" Type="varbinary(max)" Nullable="false" />
     <Property Name="Ingredientes" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Preco" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ativo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Categorias">
     <Key>
@@ -641,10 +641,10 @@
           <NavigationProperty Name="Categoria" Relationship="RestGuest.CategoriaItemMenu" FromRole="ItemMenu" ToRole="Categoria" />
           <Property Name="IdCategoria" Type="Int32" Nullable="false" />
           <Property Name="Nome" Type="String" Nullable="false" />
-          <Property Name="Fotografia" Type="String" Nullable="false" />
+          <Property Name="Fotografia" Type="Binary" Nullable="false" />
           <Property Name="Ingredientes" Type="String" Nullable="false" />
           <Property Name="Preco" Type="String" Nullable="false" />
-          <Property Name="Ativo" Type="String" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Restaurantes" Relationship="RestGuest.RestauranteItemMenu" FromRole="ItemMenu" ToRole="Restaurante" />
           <NavigationProperty Name="Pedidos" Relationship="RestGuest.ItemMenuPedido" FromRole="ItemMenu" ToRole="Pedido" />
         </EntityType>

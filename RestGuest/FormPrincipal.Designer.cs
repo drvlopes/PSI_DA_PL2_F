@@ -120,11 +120,14 @@
             // 
             this.button4.Location = new System.Drawing.Point(603, 375);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(452, 305);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(168, 155);
             this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
+            this.button4.Text = "Gestão de Menu";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
