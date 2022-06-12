@@ -14,8 +14,7 @@ namespace RestGuest
     public partial class FormGestaoClientes : Form
     {
 
-        RestGuestContainer restGuest = new RestGuestContainer();
-
+      RestGuestContainer restGuest = new RestGuestContainer();
         public FormGestaoClientes()
         {
             InitializeComponent();
@@ -87,8 +86,8 @@ namespace RestGuest
                 cliente.NumContribuinte = tbNif.Text;
                 cliente.Telemovel = mtbIndicativo.Text + tbTelemovel.Text;
 
-                restGuest.Moradas.Add(morada);
-                restGuest.Pessoas.Add(cliente);
+              restGuest.Moradas.Add(morada);
+               restGuest.Pessoas.Add(cliente);
 
                 restGuest.SaveChanges();
 
@@ -150,7 +149,7 @@ namespace RestGuest
             tbTelemovel.Enabled = modo;
             mtbIndicativo.Enabled = modo;
         }
-
+        
         private void tbPesquisa_TextChanged(object sender, EventArgs e)
         {
             btEditar.Enabled = false;
@@ -170,7 +169,7 @@ namespace RestGuest
             else
                 lbClientes.DataSource = null;
         }
-
+        
         private void btRemover_Click(object sender, EventArgs e)
         {
             Cliente cliente = lbClientes.SelectedItem as Cliente;
@@ -188,7 +187,7 @@ namespace RestGuest
             restGuest.SaveChanges();
             popularListBox();
         }
-
+        
         private void lbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             btEditar.Enabled = false;
@@ -270,7 +269,7 @@ namespace RestGuest
 
         private void cbPesquisa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbPesquisa_TextChanged(sender, e);
+           tbPesquisa_TextChanged(sender, e);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -278,5 +277,7 @@ namespace RestGuest
             tbPesquisa.Text = "";
             cbPesquisa.SelectedIndex = 0;
         }
+
+    
     }
 }

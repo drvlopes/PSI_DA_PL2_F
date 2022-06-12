@@ -22,6 +22,7 @@ namespace RestGuest
     
         public string TotalGasto { get; set; }
         public string NumContribuinte { get; set; }
+<<<<<<< Updated upstream
 
         public override string ToString()
         {

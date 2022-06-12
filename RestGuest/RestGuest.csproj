@@ -76,6 +76,12 @@
     <Compile Include="FormGestaoGeralRestaurantes.Designer.cs">
       <DependentUpon>FormGestaoGeralRestaurantes.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGestaoIndividualRestaurante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestaoIndividualRestaurante.Designer.cs">
+      <DependentUpon>FormGestaoIndividualRestaurante.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGestaoGeralRestaurantes.resx">
       <DependentUpon>FormGestaoGeralRestaurantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGestaoIndividualRestaurante.resx">
+      <DependentUpon>FormGestaoIndividualRestaurante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
