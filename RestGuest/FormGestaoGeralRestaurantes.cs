@@ -234,8 +234,6 @@ namespace RestGuest
 
             btRemoverMetodo.Enabled = false;
         }
-
-<<<<<<< Updated upstream
         private void btEditar_Click(object sender, EventArgs e)
         {
             if (lbRestaurantes.SelectedItem == null)
@@ -396,9 +394,5 @@ namespace RestGuest
 
             restGuest.SaveChanges();
         }
-=======
-      
- 
->>>>>>> Stashed changes
     }
 }

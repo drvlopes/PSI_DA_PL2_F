@@ -91,7 +91,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Telemovel" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IdMorada" Type="int" Nullable="true" />
     <Property Name="Morada_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Moradas">
@@ -466,7 +465,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" />
           <Property Name="Telemovel" Type="String" Nullable="false" />
-          <Property Name="IdMorada" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Morada" Relationship="RestGuest.MoradaPessoa" FromRole="Pessoa" ToRole="Morada" />
         </EntityType>
         <EntityType Name="Morada">
@@ -697,7 +695,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="Telemovel" ColumnName="Telemovel" />
-          <ScalarProperty Name="IdMorada" ColumnName="IdMorada" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(RestGuest.Trabalhador)">

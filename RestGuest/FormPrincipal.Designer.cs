@@ -49,7 +49,7 @@
             this.sairToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1036, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1036, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -59,7 +59,7 @@
             this.funcionárioToolStripMenuItem,
             this.restaurantesToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // funcionárioToolStripMenuItem
@@ -77,16 +77,16 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(48, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
             this.sairToolStripMenuItem.Text = "Sair";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(75, 375);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(75, 372);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 155);
+            this.button1.Size = new System.Drawing.Size(168, 158);
             this.button1.TabIndex = 1;
             this.button1.Text = "Gestão de Clientes";
             this.button1.UseVisualStyleBackColor = true;
@@ -95,10 +95,10 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(251, 375);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(251, 372);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(168, 155);
+            this.button2.Size = new System.Drawing.Size(168, 158);
             this.button2.TabIndex = 2;
             this.button2.Text = "Gestão Global de Restaurantes";
             this.button2.UseVisualStyleBackColor = true;
@@ -107,8 +107,8 @@
             // btGestaoIndividualRestaurante
             // 
             this.btGestaoIndividualRestaurante.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btGestaoIndividualRestaurante.Location = new System.Drawing.Point(427, 375);
-            this.btGestaoIndividualRestaurante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btGestaoIndividualRestaurante.Location = new System.Drawing.Point(427, 372);
+            this.btGestaoIndividualRestaurante.Margin = new System.Windows.Forms.Padding(4);
             this.btGestaoIndividualRestaurante.Name = "btGestaoIndividualRestaurante";
             this.btGestaoIndividualRestaurante.Size = new System.Drawing.Size(168, 155);
             this.btGestaoIndividualRestaurante.TabIndex = 3;
@@ -118,10 +118,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(603, 375);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(452, 305);
+            this.button4.Location = new System.Drawing.Point(603, 372);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(168, 155);
             this.button4.TabIndex = 4;
@@ -131,13 +130,14 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(779, 375);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Location = new System.Drawing.Point(779, 372);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(168, 155);
+            this.button5.Size = new System.Drawing.Size(168, 158);
             this.button5.TabIndex = 5;
             this.button5.Text = "button5";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FormPrincipal
             // 
@@ -152,7 +152,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FormPrincipal";
             this.Text = "RestGest";

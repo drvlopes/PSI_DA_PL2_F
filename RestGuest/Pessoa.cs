@@ -17,7 +17,6 @@ namespace RestGuest
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Telemovel { get; set; }
-        public Nullable<int> IdMorada { get; set; }
     
         public virtual Morada Morada { get; set; }
     }

@@ -263,11 +263,7 @@
             this.btRemoverCategoria.TabIndex = 21;
             this.btRemoverCategoria.Text = "Remover";
             this.btRemoverCategoria.UseVisualStyleBackColor = true;
-<<<<<<< Updated upstream
             this.btRemoverCategoria.Click += new System.EventHandler(this.btRemoverCategoria_Click);
-=======
-
->>>>>>> Stashed changes
             // 
             // label7
             // 
@@ -347,24 +343,13 @@
             // 
             // btNovoRestaurante
             // 
-<<<<<<< Updated upstream
-            this.btNovoRestaurante.Location = new System.Drawing.Point(6, 179);
+            this.btNovoRestaurante.Location = new System.Drawing.Point(11, 220);
             this.btNovoRestaurante.Name = "btNovoRestaurante";
-            this.btNovoRestaurante.Size = new System.Drawing.Size(104, 38);
+            this.btNovoRestaurante.Size = new System.Drawing.Size(139, 47);
             this.btNovoRestaurante.TabIndex = 30;
             this.btNovoRestaurante.Text = "Novo Restaurante";
             this.btNovoRestaurante.UseVisualStyleBackColor = true;
             this.btNovoRestaurante.Click += new System.EventHandler(this.btNovoRestaurante_Click);
-=======
-            this.btNovoCliente.Location = new System.Drawing.Point(8, 220);
-            this.btNovoCliente.Margin = new System.Windows.Forms.Padding(4);
-            this.btNovoCliente.Name = "btNovoCliente";
-            this.btNovoCliente.Size = new System.Drawing.Size(139, 47);
-            this.btNovoCliente.TabIndex = 30;
-            this.btNovoCliente.Text = "Novo Restaurante";
-            this.btNovoCliente.UseVisualStyleBackColor = true;
-            this.btNovoCliente.Click += new System.EventHandler(this.btNovoCliente_Click);
->>>>>>> Stashed changes
             // 
             // btEditar
             // 

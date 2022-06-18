@@ -48,5 +48,10 @@ namespace RestGuest
             formGestaoMenu.Closed += (s, args) => this.Enabled = true;
             formGestaoMenu.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
