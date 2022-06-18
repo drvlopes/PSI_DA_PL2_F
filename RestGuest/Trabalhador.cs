@@ -26,16 +26,12 @@ namespace RestGuest
 
         public override string ToString()
         {
-            return Nome;
+            return Nome + ":" + Posicao;
         }
 
         public virtual Restaurante Restaurante { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedidos { get; set; }
 
-        public override string ToString()
-        {
-            return Nome + ":" + Posicao;
-        }
     }
 }
