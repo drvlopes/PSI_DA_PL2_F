@@ -22,7 +22,12 @@ namespace RestGuest
     
         public string TotalGasto { get; set; }
         public string NumContribuinte { get; set; }
-    
+
+        public override string ToString()
+        {
+            return Nome;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedidos { get; set; }
     }

@@ -190,10 +190,12 @@ namespace RestGuest
         
         private void lbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btRemover.Enabled = false;
             btEditar.Enabled = false;
             if (!(lbClientes.SelectedItem is Cliente cliente))
                 return;
             btEditar.Enabled = true;
+            btRemover.Enabled = true;
             Morada morada = cliente.Morada;
 
             tbNome.Text = cliente.Nome;
@@ -216,7 +218,7 @@ namespace RestGuest
                 modoCriar(true, true);
                 btEditar.Text = "Guardar/Cancelar";
                 btNovoCliente.Enabled = false;
-                //btEditar.Enabled = true;
+                btRemover.Enabled = false;
             }
             else
             {

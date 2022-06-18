@@ -12,6 +12,7 @@ namespace RestGuest
 {
     public partial class FormPrincipal : Form
     {
+         RestGuestContainer restGuest = new RestGuestContainer();
         public FormPrincipal()
         {
             InitializeComponent();
@@ -49,9 +50,16 @@ namespace RestGuest
             formGestaoMenu.Show();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void FormPrincipal_Shown(object sender, EventArgs e)
         {
+            var restaurantes = restGuest.Restaurantes.ToList();
+            if(restaurantes == null)
+                return;
 
+            foreach (var item in restaurantes)
+            {
+                toolStripComboBox1.Items.Add(item.ToString());
+            }
         }
     }
 }

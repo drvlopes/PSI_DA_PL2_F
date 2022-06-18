@@ -265,5 +265,6 @@ namespace RestGuest
                 lbTrabalhadores.SelectedItem = trabalhador;
             }
         }
+
     }
 }

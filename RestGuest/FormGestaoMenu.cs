@@ -144,6 +144,7 @@ namespace RestGuest
             mtbPreco.Enabled = modo;
             btImagem.Enabled = modo;
             cbCategoria.Enabled = modo;
+            btImagem.Enabled = modo;
 
             cbItemsMenu.Enabled = !modo;
             cbPesquisa.Enabled = !modo;
@@ -203,6 +204,71 @@ namespace RestGuest
             restGuest.ItemMenus.Remove(itemMenu);
             restGuest.SaveChanges();
             popularCheckbox();
+        }
+
+        private bool isTexboxEmpty()
+        {
+            if (tbNome.Text.Trim() == "" || tbIngredientes.Text.Trim() == "" || mtbPreco.Text.Trim() == "€   .")
+                return true;
+            return false;
+        }
+
+        private void btEditar_Click(object sender, EventArgs e)
+        {
+            if (cbItemsMenu.SelectedItem == null)
+                return;
+
+            if(btEditar.Text == "Editar")
+            {
+                modoCriar(true, true);
+                btEditar.Text = "Guardar/Cancelar";
+                btAdicionar.Enabled = false;
+                btRemover.Enabled = false;
+            }
+            else
+            {
+                if (isTexboxEmpty())
+                {
+                    MessageBox.Show("Preencha todos os campos antes de guardar!", "Guardar Item de Menu", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                ItemMenu itemMenu = cbItemsMenu.SelectedItem as ItemMenu;
+
+                var result = MessageBox.Show("Deseja guardar as alterações do item?", "Editar Item de Menu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                    return;
+                else if (result == DialogResult.Cancel)
+                {
+                    modoCriar(false, false);
+
+                    btEditar.Text = "Editar";
+                    btAdicionar.Enabled = true;
+                    popularCheckbox();
+                    cbCategoria.SelectedItem = itemMenu;
+
+                    return;
+                }
+
+                Categoria categoria = cbCategoria.SelectedItem as Categoria;
+
+                itemMenu.Nome = tbNome.Text;
+                itemMenu.Ingredientes = tbIngredientes.Text;
+                itemMenu.Preco = mtbPreco.Text;
+                itemMenu.Categoria = categoria;
+
+                ImageConverter _imageConverter = new ImageConverter();
+                itemMenu.Fotografia = (byte[])_imageConverter.ConvertTo(pbImagem.Image, typeof(byte[]));
+
+                restGuest.SaveChanges();
+                modoCriar(false, false);
+
+                btEditar.Text = "Editar";
+                btAdicionar.Enabled = true;
+                popularCheckbox();
+                cbCategoria.SelectedItem = itemMenu;
+            }
         }
     }
 }

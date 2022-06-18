@@ -133,7 +133,7 @@
             // pbImagem
             // 
             this.pbImagem.InitialImage = global::RestGuest.Properties.Resources.Screenshot_74;
-            this.pbImagem.Location = new System.Drawing.Point(406, 154);
+            this.pbImagem.Location = new System.Drawing.Point(390, 171);
             this.pbImagem.Name = "pbImagem";
             this.pbImagem.Size = new System.Drawing.Size(119, 107);
             this.pbImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -142,7 +142,7 @@
             // 
             // btImagem
             // 
-            this.btImagem.Location = new System.Drawing.Point(406, 267);
+            this.btImagem.Location = new System.Drawing.Point(390, 284);
             this.btImagem.Name = "btImagem";
             this.btImagem.Size = new System.Drawing.Size(119, 23);
             this.btImagem.TabIndex = 38;
@@ -170,7 +170,7 @@
             // 
             // btAdicionar
             // 
-            this.btAdicionar.Location = new System.Drawing.Point(304, 296);
+            this.btAdicionar.Location = new System.Drawing.Point(288, 313);
             this.btAdicionar.Name = "btAdicionar";
             this.btAdicionar.Size = new System.Drawing.Size(104, 38);
             this.btAdicionar.TabIndex = 33;
@@ -180,16 +180,17 @@
             // 
             // btEditar
             // 
-            this.btEditar.Location = new System.Drawing.Point(413, 296);
+            this.btEditar.Location = new System.Drawing.Point(508, 313);
             this.btEditar.Name = "btEditar";
             this.btEditar.Size = new System.Drawing.Size(104, 38);
             this.btEditar.TabIndex = 32;
             this.btEditar.Text = "Editar";
             this.btEditar.UseVisualStyleBackColor = true;
+            this.btEditar.Click += new System.EventHandler(this.btEditar_Click);
             // 
             // btRemover
             // 
-            this.btRemover.Location = new System.Drawing.Point(523, 296);
+            this.btRemover.Location = new System.Drawing.Point(398, 313);
             this.btRemover.Name = "btRemover";
             this.btRemover.Size = new System.Drawing.Size(104, 38);
             this.btRemover.TabIndex = 34;
@@ -220,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 483);
+            this.ClientSize = new System.Drawing.Size(653, 483);
             this.Controls.Add(this.cbCategoria);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btRemover);

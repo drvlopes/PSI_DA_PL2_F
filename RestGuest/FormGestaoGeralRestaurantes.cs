@@ -234,6 +234,7 @@ namespace RestGuest
 
             btRemoverMetodo.Enabled = false;
         }
+
         private void btEditar_Click(object sender, EventArgs e)
         {
             if (lbRestaurantes.SelectedItem == null)
