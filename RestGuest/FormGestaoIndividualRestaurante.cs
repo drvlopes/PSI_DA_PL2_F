@@ -13,17 +13,15 @@ namespace RestGuest
     public partial class FormGestaoIndividualRestaurante : Form
     {
         RestGuestContainer restGuest = new RestGuestContainer();
-        int restaurante;
-        public FormGestaoIndividualRestaurante(int restaurante)
+        Restaurante restaurante;
+        public FormGestaoIndividualRestaurante(Restaurante restaurante)
         {
             InitializeComponent();
-            this.restaurante = restaurante + 1;
+            this.restaurante = restaurante;
             popularListBox();
             popularlbCategorias();
             modoCriar(false, false);
         }
-
-
 
         private void btNovoTrabalhador_Click(object sender, EventArgs e)
         {
@@ -80,7 +78,7 @@ namespace RestGuest
                 trabalhador.Posicao = tbPosicao.Text;
                 trabalhador.Telemovel = mtbIndicativo.Text + tbTelemovel.Text;
 
-                trabalhador.IdRestaurante = this.restaurante ;
+                trabalhador.Restaurante = restaurante;
 
                 restGuest.Moradas.Add(morada);
                 restGuest.Pessoas.Add(trabalhador);
@@ -92,12 +90,10 @@ namespace RestGuest
                 btNovoTrabalhador.Text = "Novo Trabalhador";
                 popularListBox();
             }
-
         }
         private void popularListBox()
         {
-            Restaurante Restaurante = restGuest.Restaurantes.Find(this.restaurante);
-            lbTrabalhadores.DataSource = Restaurante.Trabalhadores.ToList<Trabalhador>();
+            lbTrabalhadores.DataSource = restaurante.Trabalhadores.ToList();
             lbTrabalhadores.ClearSelected();
             clearTexbox();
         }
@@ -267,13 +263,12 @@ namespace RestGuest
         {
             lbCategorias.Items.Clear();
 
-
             var list = restGuest.Categorias.ToList();
 
             foreach (var item in list)
             {
-                lbCategorias.Items.Add(item);
-                  
+                if(item.Ativo)
+                    lbCategorias.Items.Add(item);
             }
         }
 
@@ -283,41 +278,42 @@ namespace RestGuest
                 return;
 
             cbItens.Items.Clear();
-            Restaurante restaurante = restGuest.Restaurantes.Find(this.restaurante) ;
             var items = categoria.ItemMenus;
 
-
-            foreach(var item in items)
+            foreach (var item in items)
             {
-                if (item.Restaurantes.Contains(restaurante))
+                if (item.Restaurantes.Any(p => p.Id.Equals(restaurante.Id)))
                 {
-                    cbItens.Items.Add(item);
-                    cbItens.SetItemChecked(cbItens.Items.Count - 1, true);
+                    if(item.Ativo)
+                    {
+                        cbItens.Items.Add(item);
+                        cbItens.SetItemChecked(cbItens.Items.Count - 1, true);
+                    }
                 }
                 else
                 {
-                    cbItens.Items.Add(item);
-                    cbItens.SetItemChecked(cbItens.Items.Count - 1, false);
+                    if(item.Ativo)
+                    {
+                        cbItens.Items.Add(item);
+                        cbItens.SetItemChecked(cbItens.Items.Count - 1, false);
+                    }
                 }
             }
         }
-
 
 
         private void cbItens_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (cbItens.SelectedIndex == -1)
                 return;
-
-            Restaurante restaurante = restGuest.Restaurantes.Find(this.restaurante);
+            Restaurante res = restGuest.Restaurantes.Find(restaurante.Id);
 
             if (cbItens.GetItemChecked(cbItens.SelectedIndex))
-                restaurante.ItemMenus.Remove(cbItens.SelectedItem as ItemMenu);
+                res.ItemMenus.Remove(cbItens.SelectedItem as ItemMenu);
             else
-                restaurante.ItemMenus.Add(cbItens.SelectedItem as ItemMenu);
+                res.ItemMenus.Add(cbItens.SelectedItem as ItemMenu);
 
             restGuest.SaveChanges();
         }
-
     }
 }

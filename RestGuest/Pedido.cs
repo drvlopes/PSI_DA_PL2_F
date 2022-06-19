@@ -27,7 +27,12 @@ namespace RestGuest
         public int IdRestaurante { get; set; }
         public int IdEstado { get; set; }
         public string ValorTotal { get; set; }
-    
+
+        public override string ToString()
+        {
+            return $"({Id})-{Cliente.Nome}";
+        }
+
         public virtual Trabalhador Trabalhador { get; set; }
         public virtual Cliente Cliente { get; set; }
         public virtual Restaurante Restaurante { get; set; }

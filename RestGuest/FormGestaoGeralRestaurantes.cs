@@ -301,9 +301,11 @@ namespace RestGuest
 
         private void lbRestaurantes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btRemoverRestaurante.Enabled = false;
             btEditar.Enabled = false;
             if (!(lbRestaurantes.SelectedItem is Restaurante restaurante))
                 return;
+            btRemoverRestaurante.Enabled = true;
             btEditar.Enabled = true;
 
             Morada morada = restaurante.Morada;

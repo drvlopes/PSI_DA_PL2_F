@@ -16,7 +16,20 @@ namespace RestGuest
         public FormPrincipal()
         {
             InitializeComponent();
+            var array = new string[4] { "Recebido", "Em Processamento", "Cancelado", "Concluído"};
 
+            var estados = restGuest.Estados.ToList();
+            if(estados == null)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Estado estado = new Estado();
+                    estado.Status = array[i];
+                    restGuest.Estados.Add(estado);
+                    restGuest.SaveChanges();
+                }
+            }
+                
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,12 +50,13 @@ namespace RestGuest
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(toolStripComboBox1.SelectedIndex == -1)
+            if (toolStripComboBox1.SelectedItem == null)
             {
-                MessageBox.Show("Tem de selecionar um restuarante para Aceder", "Seleção Restaurante", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Por favor selecione o restaurante para aceder à gestão de restaurante", "RestGest", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int restaurante = toolStripComboBox1.SelectedIndex;
+            Restaurante restaurante = toolStripComboBox1.SelectedItem as Restaurante;
+
             FormGestaoIndividualRestaurante formGestaoIndividualRestaurantes = new FormGestaoIndividualRestaurante(restaurante);
             this.Enabled = false;
             formGestaoIndividualRestaurantes.Closed += (s,args) => this.Enabled = true; 
@@ -66,12 +80,57 @@ namespace RestGuest
 
             foreach (var item in restaurantes)
             {
-                toolStripComboBox1.Items.Add(item.ToString());
+                toolStripComboBox1.Items.Add(item);
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (toolStripComboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor selecione o restaurante e funcionário para aceder à gestão de pedidos", "RestGest", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Restaurante restaurante = toolStripComboBox1.SelectedItem as Restaurante;
+            Trabalhador trabalhador = toolStripComboBox2.SelectedItem as Trabalhador;
+                
+
+            FormGestaoPedidos formGestaoPedidos = new FormGestaoPedidos(restaurante, trabalhador);
+            this.Enabled = false;
+            formGestaoPedidos.Closed += (s, args) => this.Enabled = true;
+            formGestaoPedidos.Show();
+        }
+
+        private void toolStripComboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            toolStripComboBox2.Items.Clear();
+
+            if (toolStripComboBox1.SelectedItem == null)
+                return;
+            Restaurante restaurante = toolStripComboBox1.SelectedItem as Restaurante;
+            label3.Text = restaurante.Nome;
+
+
+            var funcionarios = restaurante.Trabalhadores.ToList();
+            if (funcionarios == null)
+                return;
+
+            foreach (var item in funcionarios)
+            {
+                toolStripComboBox2.Items.Add(item);
+            }
+        }
+
+        private void toolStripComboBox2_DropDownClosed(object sender, EventArgs e)
+        {
+            label4.Text = "";
+
+            if (toolStripComboBox2.SelectedItem == null)
+                return;
+            Trabalhador trabalhador = toolStripComboBox2.SelectedItem as Trabalhador;
+            label4.Text = trabalhador.Nome;
+
 
         }
     }

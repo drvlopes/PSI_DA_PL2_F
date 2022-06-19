@@ -30,14 +30,20 @@ namespace RestGuest
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.FileName = "imagem"; // Default file name
-            dlg.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            dlg.Filter = "jpg files (*.jpg)|*.jpg";
             dlg.FilterIndex = 1; // Default filter index
                                  // Show save file dialog box e process save file dialog box results
             if (dlg.ShowDialog() == DialogResult.OK)
             {
+                FileInfo fi = new FileInfo(dlg.FileName);
+                long fileSize = fi.Length; //The size of the current file in bytes.file 
+                if (fi.Length > 1048576)
                 {
-                    pbImagem.Image = Image.FromFile(dlg.FileName);
+                    MessageBox.Show("Por favor escolha uma imagem ate 1 MB!", "Gestão de Menu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+                pbImagem.Image = Image.FromFile(dlg.FileName);
+                
             }
         }
 
@@ -173,7 +179,17 @@ namespace RestGuest
 
         private void cbItemsMenu_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            if (cbItemsMenu.SelectedIndex == -1)
+                return;
 
+            ItemMenu item = cbItemsMenu.SelectedItem as ItemMenu;
+
+            if (cbItemsMenu.GetItemChecked(cbItemsMenu.SelectedIndex))
+                item.Ativo = false;
+            else
+                item.Ativo = true;
+
+            restGuest.SaveChanges();
         }
 
         private void cbItemsMenu_SelectedIndexChanged(object sender, EventArgs e)

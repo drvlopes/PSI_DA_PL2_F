@@ -88,6 +88,12 @@
     <Compile Include="FormGestaoMenu.Designer.cs">
       <DependentUpon>FormGestaoMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGestaoPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestaoPedidos.Designer.cs">
+      <DependentUpon>FormGestaoPedidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RestGuest.edmx</DependentUpon>
     </Compile>
+    <Compile Include="RestGuestDataSet.cs">
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RestGuestDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Trabalhador.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
@@ -147,6 +161,9 @@
     <EmbeddedResource Include="FormGestaoMenu.resx">
       <DependentUpon>FormGestaoMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormGestaoPedidos.resx">
+      <DependentUpon>FormGestaoPedidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,7 +178,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Cliente.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -177,6 +193,17 @@
     </EntityDeploy>
     <None Include="RestGuest.edmx.diagram">
       <DependentUpon>RestGuest.edmx</DependentUpon>
+    </None>
+    <None Include="RestGuestDataSet.xsc">
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RestGuestDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RestGuestDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RestGuestDataSet.xss">
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
