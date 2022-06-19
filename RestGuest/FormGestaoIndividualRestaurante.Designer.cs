@@ -56,10 +56,9 @@ namespace RestGuest
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbCategorias = new System.Windows.Forms.ListBox();
+            this.cbItens = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -324,14 +323,6 @@ namespace RestGuest
             this.label6.TabIndex = 4;
             this.label6.Text = "Nome:";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(629, 17);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(271, 199);
-            this.listBox1.TabIndex = 34;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -339,38 +330,35 @@ namespace RestGuest
             this.label11.Location = new System.Drawing.Point(707, 109);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(115, 29);
+            this.label11.Size = new System.Drawing.Size(0, 29);
             this.label11.TabIndex = 35;
-            this.label11.Text = "VER !!!!!!!!";
             // 
-            // listBox2
+            // lbCategorias
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(626, 266);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(271, 238);
-            this.listBox2.TabIndex = 36;
+            this.lbCategorias.FormattingEnabled = true;
+            this.lbCategorias.Location = new System.Drawing.Point(626, 24);
+            this.lbCategorias.Name = "lbCategorias";
+            this.lbCategorias.Size = new System.Drawing.Size(271, 238);
+            this.lbCategorias.TabIndex = 39;
+            this.lbCategorias.SelectedIndexChanged += new System.EventHandler(this.lbCategorias_SelectedIndexChanged);
             // 
-            // label12
+            // cbItens
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label12.Location = new System.Drawing.Point(700, 370);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(115, 29);
-            this.label12.TabIndex = 37;
-            this.label12.Text = "VER !!!!!!!!";
+            this.cbItens.FormattingEnabled = true;
+            this.cbItens.Location = new System.Drawing.Point(626, 297);
+            this.cbItens.Name = "cbItens";
+            this.cbItens.Size = new System.Drawing.Size(271, 229);
+            this.cbItens.TabIndex = 40;
+            this.cbItens.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbItens_ItemCheck);
             // 
             // FormGestaoIndividualRestaurante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 548);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.cbItens);
+            this.Controls.Add(this.lbCategorias);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btPesquisa);
@@ -416,10 +404,9 @@ namespace RestGuest
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.MaskedTextBox mtbIndicativo;
+        private System.Windows.Forms.ListBox lbCategorias;
+        private System.Windows.Forms.CheckedListBox cbItens;
     }
 }

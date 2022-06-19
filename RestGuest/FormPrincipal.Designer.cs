@@ -77,6 +77,7 @@
             this.restaurantesToolStripMenuItem.Name = "restaurantesToolStripMenuItem";
             this.restaurantesToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.restaurantesToolStripMenuItem.Text = "Restaurantes";
+            this.restaurantesToolStripMenuItem.Click += new System.EventHandler(this.FormPrincipal_Shown);
             // 
             // toolStripComboBox1
             // 

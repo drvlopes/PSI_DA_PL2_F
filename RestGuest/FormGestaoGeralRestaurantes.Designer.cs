@@ -381,6 +381,7 @@
             this.Name = "FormGestaoGeralRestaurantes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormGestaoGeralRestaurantes";
+
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

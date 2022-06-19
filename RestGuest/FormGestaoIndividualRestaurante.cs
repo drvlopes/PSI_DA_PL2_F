@@ -13,10 +13,13 @@ namespace RestGuest
     public partial class FormGestaoIndividualRestaurante : Form
     {
         RestGuestContainer restGuest = new RestGuestContainer();
-        public FormGestaoIndividualRestaurante()
+        int restaurante;
+        public FormGestaoIndividualRestaurante(int restaurante)
         {
             InitializeComponent();
+            this.restaurante = restaurante + 1;
             popularListBox();
+            popularlbCategorias();
             modoCriar(false, false);
         }
 
@@ -77,10 +80,7 @@ namespace RestGuest
                 trabalhador.Posicao = tbPosicao.Text;
                 trabalhador.Telemovel = mtbIndicativo.Text + tbTelemovel.Text;
 
-                //isto
-                trabalhador.IdRestaurante = 1;
-                //O Restaurante referente ao Trabalhador é o Restuarante selecionado de momento.
-                //
+                trabalhador.IdRestaurante = this.restaurante ;
 
                 restGuest.Moradas.Add(morada);
                 restGuest.Pessoas.Add(trabalhador);
@@ -96,11 +96,7 @@ namespace RestGuest
         }
         private void popularListBox()
         {
-            Restaurante Restaurante = new Restaurante();
-            Restaurante = restGuest.Restaurantes.First(); // ? Ver Como faz com o Diogo ? //
-
-            //lbTrabalhadores.DataSource = restGuest.Pessoas.OfType<Trabalhador>().ToList<Trabalhador>();
-
+            Restaurante Restaurante = restGuest.Restaurantes.Find(this.restaurante);
             lbTrabalhadores.DataSource = Restaurante.Trabalhadores.ToList<Trabalhador>();
             lbTrabalhadores.ClearSelected();
             clearTexbox();
@@ -226,7 +222,7 @@ namespace RestGuest
 
                 Trabalhador trabalhador = lbTrabalhadores.SelectedItem as Trabalhador;
 
-                var result = MessageBox.Show("Deseja guardar as alterações do cliente?", "Editar cliente", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                var result = MessageBox.Show("Deseja guardar as alterações do trabalhador?", "Editar trabalhador", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
                 if (result == DialogResult.No)
                     return;
@@ -264,6 +260,63 @@ namespace RestGuest
                 popularListBox();
                 lbTrabalhadores.SelectedItem = trabalhador;
             }
+        }
+
+  
+        private void popularlbCategorias()
+        {
+            lbCategorias.Items.Clear();
+
+
+            var list = restGuest.Categorias.ToList();
+
+            foreach (var item in list)
+            {
+                lbCategorias.Items.Add(item);
+                  
+            }
+        }
+
+        private void lbCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(!(lbCategorias.SelectedItem is Categoria categoria))
+                return;
+
+            cbItens.Items.Clear();
+            Restaurante restaurante = restGuest.Restaurantes.Find(this.restaurante) ;
+            var items = categoria.ItemMenus;
+
+
+            foreach(var item in items)
+            {
+                if (item.Restaurantes.Contains(restaurante))
+                {
+                    cbItens.Items.Add(item);
+                    cbItens.SetItemChecked(cbItens.Items.Count - 1, true);
+                }
+                else
+                {
+                    cbItens.Items.Add(item);
+                    cbItens.SetItemChecked(cbItens.Items.Count - 1, false);
+                }
+            }
+        }
+
+
+
+        private void cbItens_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (cbItens.SelectedIndex == -1)
+                return;
+
+            Restaurante restaurante = restGuest.Restaurantes.Find(this.restaurante);
+
+            if (cbItens.GetItemChecked(cbItens.SelectedIndex))
+                restaurante.ItemMenus.Remove(cbItens.SelectedItem as ItemMenu);
+            else
+                restaurante.ItemMenus.Add(cbItens.SelectedItem as ItemMenu);
+
+            restGuest.SaveChanges();
         }
 
     }
