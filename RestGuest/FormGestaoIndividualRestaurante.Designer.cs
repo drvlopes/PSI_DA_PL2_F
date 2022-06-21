@@ -60,9 +60,13 @@ namespace RestGuest
             this.cbItens = new System.Windows.Forms.CheckedListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.gestãoDePedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestãoDeMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label7
@@ -136,7 +140,7 @@ namespace RestGuest
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(263, 20);
+            this.groupBox1.Location = new System.Drawing.Point(263, 46);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(338, 298);
             this.groupBox1.TabIndex = 33;
@@ -324,7 +328,7 @@ namespace RestGuest
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label11.Location = new System.Drawing.Point(707, 109);
+            this.label11.Location = new System.Drawing.Point(707, 135);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(0, 29);
@@ -355,7 +359,7 @@ namespace RestGuest
             this.groupBox2.Controls.Add(this.tbPesquisa);
             this.groupBox2.Controls.Add(this.btPesquisa);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(12, 1);
+            this.groupBox2.Location = new System.Drawing.Point(12, 27);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(245, 475);
             this.groupBox2.TabIndex = 41;
@@ -366,23 +370,50 @@ namespace RestGuest
             // 
             this.groupBox3.Controls.Add(this.lbCategorias);
             this.groupBox3.Controls.Add(this.cbItens);
-            this.groupBox3.Location = new System.Drawing.Point(607, 20);
+            this.groupBox3.Location = new System.Drawing.Point(607, 46);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(239, 430);
             this.groupBox3.TabIndex = 42;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gerir Menu";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestãoDePedidosToolStripMenuItem,
+            this.gestãoDeMenuToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(858, 24);
+            this.menuStrip1.TabIndex = 43;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // gestãoDePedidosToolStripMenuItem
+            // 
+            this.gestãoDePedidosToolStripMenuItem.Name = "gestãoDePedidosToolStripMenuItem";
+            this.gestãoDePedidosToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
+            this.gestãoDePedidosToolStripMenuItem.Text = "Gestão de Pedidos";
+            this.gestãoDePedidosToolStripMenuItem.Click += new System.EventHandler(this.gestãoDePedidosToolStripMenuItem_Click);
+            // 
+            // gestãoDeMenuToolStripMenuItem
+            // 
+            this.gestãoDeMenuToolStripMenuItem.Name = "gestãoDeMenuToolStripMenuItem";
+            this.gestãoDeMenuToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+            this.gestãoDeMenuToolStripMenuItem.Text = "Gestão de Menu";
+            this.gestãoDeMenuToolStripMenuItem.Click += new System.EventHandler(this.gestãoDeMenuToolStripMenuItem_Click);
+            // 
             // FormGestaoIndividualRestaurante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 487);
+            this.ClientSize = new System.Drawing.Size(858, 518);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FormGestaoIndividualRestaurante";
@@ -393,6 +424,8 @@ namespace RestGuest
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,5 +463,8 @@ namespace RestGuest
         private System.Windows.Forms.MaskedTextBox tbTelemovel;
         private System.Windows.Forms.MaskedTextBox tbCodPostal;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem gestãoDePedidosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestãoDeMenuToolStripMenuItem;
     }
 }

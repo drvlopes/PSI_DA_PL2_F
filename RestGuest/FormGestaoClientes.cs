@@ -181,18 +181,40 @@ namespace RestGuest
         {
             Cliente cliente = lbClientes.SelectedItem as Cliente;
 
-            var pedidos = restGuest.Pedidos.Where(p => p.IdCliente == cliente.Id);
+            var pedidos = restGuest.Pedidos.Where(p => p.IdCliente == cliente.Id).ToList();
 
             if(pedidos.Count() != 0)
             {
-                MessageBox.Show("Clientes com faturas no sistema não podem ser removidos", "Remover Cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var res = MessageBox.Show($"O cliente {cliente.Nome} possui faturas no sistema, ao apagar o cliente irá apagar todos os dados associados.\nDeseja continuar?", "Remover Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (res == DialogResult.No)
                 return;
+
+                foreach (var item in pedidos)
+                {
+                    var menus = item.ItemMenuPedidos.ToList();
+                    foreach (var menu in menus)
+                    {
+                        restGuest.ItemMenuPedidos.Remove(menu);
+                    }
+                    var pagamentos = item.Pagamentos.ToList();
+                    foreach (var pagamento in pagamentos)
+                    {
+                        restGuest.Pagamentos.Remove(pagamento);
+                    }
+                    restGuest.Pedidos.Remove(item);
+                }
+            
+            }
+            else
+            {
+                var result = MessageBox.Show($"Deseja remover o cliente {cliente.Nome}?", "Remover Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                    return;
             }
                 
-            var result = MessageBox.Show($"Deseja remover o cliente {cliente.Nome}?", "Remover Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.No)
-                return;
+            
 
             Morada morada = cliente.Morada;
 

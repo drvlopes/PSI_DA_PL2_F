@@ -340,5 +340,30 @@ namespace RestGuest
         {
             tbPesquisa_TextChanged(sender, e);
         }
+
+        private void gestãoDePedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lbTrabalhadores.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione o trabalhador da lista para poder aceder à gestão de Pedidos!", "Gestão de Pedidos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Trabalhador trabalhador = lbTrabalhadores.SelectedItem as Trabalhador;
+                FormGestaoPedidos formGestaoPedidos = new FormGestaoPedidos(restaurante, trabalhador);
+                this.Enabled = false;
+                formGestaoPedidos.Closed += (s, args) => this.Enabled = true;
+                formGestaoPedidos.Show();
+            
+                
+        }
+
+        private void gestãoDeMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormGestaoMenu formGestaoMenu = new FormGestaoMenu();
+            this.Enabled = false;
+            formGestaoMenu.Closed += (s, args) => this.Enabled = true;
+            formGestaoMenu.Show();
+        }
     }
 }

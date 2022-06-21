@@ -70,6 +70,12 @@ namespace RestGuest
                     return;
                 }
 
+                if(!Double.TryParse(mtbPreco.Text.Replace(",",".").Trim(), out double preco))
+                {
+                    MessageBox.Show("Formato do preço inválido", "Gestão de Menu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var result = MessageBox.Show("Deseja guardar os dados do item de menu?", "Guardar Item de Menu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
                 if (result == DialogResult.No)
@@ -86,7 +92,7 @@ namespace RestGuest
                 ItemMenu itemMenu = new ItemMenu();
                 itemMenu.Nome = tbNome.Text;
                 itemMenu.Ingredientes = tbIngredientes.Text;
-                itemMenu.Preco = Double.Parse(mtbPreco.Text);
+                itemMenu.Preco = preco;
                 itemMenu.Categoria = categoria;
 
                 ImageConverter _imageConverter = new ImageConverter();
@@ -260,6 +266,12 @@ namespace RestGuest
                     return;
                 }
 
+                if (!Double.TryParse(mtbPreco.Text.Replace(",", ".").Trim(), out double preco))
+                {
+                    MessageBox.Show("Formato do preço inválido", "Gestão de Menu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 ItemMenu itemMenu = cbItemsMenu.SelectedItem as ItemMenu;
 
                 var result = MessageBox.Show("Deseja guardar as alterações do item?", "Editar Item de Menu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -282,7 +294,7 @@ namespace RestGuest
 
                 itemMenu.Nome = tbNome.Text;
                 itemMenu.Ingredientes = tbIngredientes.Text;
-                itemMenu.Preco = Double.Parse(mtbPreco.Text);
+                itemMenu.Preco = preco;
                 itemMenu.Categoria = categoria;
 
                 ImageConverter _imageConverter = new ImageConverter();

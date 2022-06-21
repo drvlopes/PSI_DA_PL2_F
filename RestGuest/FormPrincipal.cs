@@ -78,6 +78,8 @@ namespace RestGuest
         {
             RestGuestContainer restGuest = new RestGuestContainer();
             toolStripComboBox1.Items.Clear();
+            label3.Text = "";
+            label4.Text = "";
 
             var restaurantes = restGuest.Restaurantes.ToList();
 
@@ -112,15 +114,17 @@ namespace RestGuest
 
         private void toolStripComboBox1_DropDownClosed(object sender, EventArgs e)
         {
+            RestGuestContainer restGuest = new RestGuestContainer();
             toolStripComboBox2.Items.Clear();
 
             if (toolStripComboBox1.SelectedItem == null)
                 return;
             Restaurante restaurante = toolStripComboBox1.SelectedItem as Restaurante;
+
             label3.Text = restaurante.Nome;
 
 
-            var funcionarios = restaurante.Trabalhadores.ToList();
+            var funcionarios = restGuest.Pessoas.OfType<Trabalhador>().Where(p => p.IdRestaurante == restaurante.Id);
             if (funcionarios == null)
                 return;
 
@@ -157,7 +161,23 @@ namespace RestGuest
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            label4.Text = "";
             toolStripComboBox1_DropDownClosed(sender, e);
+        }
+
+        private void gerirRestauranteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button3_Click(sender, e);
+        }
+
+        private void gestãoDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
+        }
+
+        private void gestãoDeMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button3_Click(sender, e);
         }
     }
 }

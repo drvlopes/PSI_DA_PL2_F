@@ -34,7 +34,6 @@
             this.tbNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btImagem = new System.Windows.Forms.Button();
-            this.mtbPreco = new System.Windows.Forms.MaskedTextBox();
             this.cbItemsMenu = new System.Windows.Forms.CheckedListBox();
             this.btAdicionar = new System.Windows.Forms.Button();
             this.btEditar = new System.Windows.Forms.Button();
@@ -42,12 +41,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbPesquisa = new System.Windows.Forms.ComboBox();
+            this.tbPesquisa = new System.Windows.Forms.TextBox();
+            this.btPesquisa = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pbImagem = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btPesquisa = new System.Windows.Forms.Button();
-            this.tbPesquisa = new System.Windows.Forms.TextBox();
-            this.cbPesquisa = new System.Windows.Forms.ComboBox();
+            this.mtbPreco = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).BeginInit();
@@ -106,14 +106,6 @@
             this.btImagem.Text = "Carregar Imagem";
             this.btImagem.UseVisualStyleBackColor = true;
             this.btImagem.Click += new System.EventHandler(this.btImagem_Click);
-            // 
-            // mtbPreco
-            // 
-            this.mtbPreco.Location = new System.Drawing.Point(100, 71);
-            this.mtbPreco.Mask = "9999.99";
-            this.mtbPreco.Name = "mtbPreco";
-            this.mtbPreco.Size = new System.Drawing.Size(54, 20);
-            this.mtbPreco.TabIndex = 39;
             // 
             // cbItemsMenu
             // 
@@ -188,8 +180,49 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de Items";
             // 
+            // cbPesquisa
+            // 
+            this.cbPesquisa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPesquisa.FormattingEnabled = true;
+            this.cbPesquisa.Items.AddRange(new object[] {
+            "Nome",
+            "Categoria"});
+            this.cbPesquisa.Location = new System.Drawing.Point(104, 329);
+            this.cbPesquisa.Name = "cbPesquisa";
+            this.cbPesquisa.Size = new System.Drawing.Size(143, 21);
+            this.cbPesquisa.TabIndex = 23;
+            this.cbPesquisa.SelectedIndexChanged += new System.EventHandler(this.cbPesquisa_SelectedIndexChanged);
+            // 
+            // tbPesquisa
+            // 
+            this.tbPesquisa.Location = new System.Drawing.Point(52, 356);
+            this.tbPesquisa.Name = "tbPesquisa";
+            this.tbPesquisa.Size = new System.Drawing.Size(148, 20);
+            this.tbPesquisa.TabIndex = 24;
+            this.tbPesquisa.TextChanged += new System.EventHandler(this.tbPesquisa_TextChanged);
+            // 
+            // btPesquisa
+            // 
+            this.btPesquisa.Location = new System.Drawing.Point(89, 382);
+            this.btPesquisa.Name = "btPesquisa";
+            this.btPesquisa.Size = new System.Drawing.Size(75, 23);
+            this.btPesquisa.TabIndex = 25;
+            this.btPesquisa.Text = "Limpar pesquisa";
+            this.btPesquisa.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 330);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 17);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Pesquisa por:";
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.mtbPreco);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.tbNome);
             this.groupBox2.Controls.Add(this.btRemover);
@@ -202,7 +235,6 @@
             this.groupBox2.Controls.Add(this.tbIngredientes);
             this.groupBox2.Controls.Add(this.pbImagem);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.mtbPreco);
             this.groupBox2.Location = new System.Drawing.Point(271, 21);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(469, 172);
@@ -220,45 +252,12 @@
             this.pbImagem.TabIndex = 37;
             this.pbImagem.TabStop = false;
             // 
-            // label7
+            // mtbPreco
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 330);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 17);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "Pesquisa por:";
-            // 
-            // btPesquisa
-            // 
-            this.btPesquisa.Location = new System.Drawing.Point(89, 382);
-            this.btPesquisa.Name = "btPesquisa";
-            this.btPesquisa.Size = new System.Drawing.Size(75, 23);
-            this.btPesquisa.TabIndex = 25;
-            this.btPesquisa.Text = "Limpar pesquisa";
-            this.btPesquisa.UseVisualStyleBackColor = true;
-            // 
-            // tbPesquisa
-            // 
-            this.tbPesquisa.Location = new System.Drawing.Point(52, 356);
-            this.tbPesquisa.Name = "tbPesquisa";
-            this.tbPesquisa.Size = new System.Drawing.Size(148, 20);
-            this.tbPesquisa.TabIndex = 24;
-            this.tbPesquisa.TextChanged += new System.EventHandler(this.tbPesquisa_TextChanged);
-            // 
-            // cbPesquisa
-            // 
-            this.cbPesquisa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPesquisa.FormattingEnabled = true;
-            this.cbPesquisa.Items.AddRange(new object[] {
-            "Nome",
-            "Categoria"});
-            this.cbPesquisa.Location = new System.Drawing.Point(104, 329);
-            this.cbPesquisa.Name = "cbPesquisa";
-            this.cbPesquisa.Size = new System.Drawing.Size(143, 21);
-            this.cbPesquisa.TabIndex = 23;
-            this.cbPesquisa.SelectedIndexChanged += new System.EventHandler(this.cbPesquisa_SelectedIndexChanged);
+            this.mtbPreco.Location = new System.Drawing.Point(103, 71);
+            this.mtbPreco.Name = "mtbPreco";
+            this.mtbPreco.Size = new System.Drawing.Size(74, 20);
+            this.mtbPreco.TabIndex = 43;
             // 
             // FormGestaoMenu
             // 
@@ -290,7 +289,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pbImagem;
         private System.Windows.Forms.Button btImagem;
-        private System.Windows.Forms.MaskedTextBox mtbPreco;
         private System.Windows.Forms.CheckedListBox cbItemsMenu;
         private System.Windows.Forms.Button btAdicionar;
         private System.Windows.Forms.Button btEditar;
@@ -303,5 +301,6 @@
         private System.Windows.Forms.TextBox tbPesquisa;
         private System.Windows.Forms.Button btPesquisa;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox mtbPreco;
     }
 }

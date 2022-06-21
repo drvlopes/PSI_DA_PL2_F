@@ -44,6 +44,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.gerirRestauranteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestãoDeClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestãoDeMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +56,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
             this.restaurantesToolStripMenuItem,
-            this.funcionáriosToolStripMenuItem});
+            this.funcionáriosToolStripMenuItem,
+            this.gerirRestauranteToolStripMenuItem,
+            this.gestãoDeClientesToolStripMenuItem,
+            this.gestãoDeMenuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -201,6 +207,27 @@
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 9;
             // 
+            // gerirRestauranteToolStripMenuItem
+            // 
+            this.gerirRestauranteToolStripMenuItem.Name = "gerirRestauranteToolStripMenuItem";
+            this.gerirRestauranteToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.gerirRestauranteToolStripMenuItem.Text = "Gerir Restaurante";
+            this.gerirRestauranteToolStripMenuItem.Click += new System.EventHandler(this.gerirRestauranteToolStripMenuItem_Click);
+            // 
+            // gestãoDeClientesToolStripMenuItem
+            // 
+            this.gestãoDeClientesToolStripMenuItem.Name = "gestãoDeClientesToolStripMenuItem";
+            this.gestãoDeClientesToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
+            this.gestãoDeClientesToolStripMenuItem.Text = "Gestão de  Clientes";
+            this.gestãoDeClientesToolStripMenuItem.Click += new System.EventHandler(this.gestãoDeClientesToolStripMenuItem_Click);
+            // 
+            // gestãoDeMenuToolStripMenuItem
+            // 
+            this.gestãoDeMenuToolStripMenuItem.Name = "gestãoDeMenuToolStripMenuItem";
+            this.gestãoDeMenuToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
+            this.gestãoDeMenuToolStripMenuItem.Text = "Menu do Restaurante";
+            this.gestãoDeMenuToolStripMenuItem.Click += new System.EventHandler(this.gestãoDeMenuToolStripMenuItem_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +276,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerirRestauranteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestãoDeClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestãoDeMenuToolStripMenuItem;
     }
 }
 
