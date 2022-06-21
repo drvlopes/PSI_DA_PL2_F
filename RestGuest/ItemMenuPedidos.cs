@@ -12,12 +12,13 @@ namespace RestGuest
     using System;
     using System.Collections.Generic;
     
-    public partial class Pessoa
+    public partial class ItemMenuPedidos
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Telemovel { get; set; }
+        public Nullable<int> PedidoId { get; set; }
+        public Nullable<int> ItemMenuId { get; set; }
     
-        public virtual Morada Morada { get; set; }
+        public virtual Pedido Pedido { get; set; }
+        public virtual ItemMenu ItemMenu { get; set; }
     }
 }

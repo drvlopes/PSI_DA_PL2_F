@@ -39,7 +39,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbNomeRestaurante = new System.Windows.Forms.TextBox();
             this.tbPais = new System.Windows.Forms.TextBox();
-            this.tbCodPostal = new System.Windows.Forms.TextBox();
             this.tbCidade = new System.Windows.Forms.TextBox();
             this.tbRua = new System.Windows.Forms.TextBox();
             this.cbMetodosPagamento = new System.Windows.Forms.CheckedListBox();
@@ -60,6 +59,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tbCodPostal = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -168,13 +168,6 @@
             this.tbPais.Name = "tbPais";
             this.tbPais.Size = new System.Drawing.Size(230, 20);
             this.tbPais.TabIndex = 5;
-            // 
-            // tbCodPostal
-            // 
-            this.tbCodPostal.Location = new System.Drawing.Point(92, 115);
-            this.tbCodPostal.Name = "tbCodPostal";
-            this.tbCodPostal.Size = new System.Drawing.Size(230, 20);
-            this.tbCodPostal.TabIndex = 4;
             // 
             // tbCidade
             // 
@@ -329,12 +322,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbCodPostal);
             this.groupBox1.Controls.Add(this.btRemoverRestaurante);
             this.groupBox1.Controls.Add(this.btNovoRestaurante);
             this.groupBox1.Controls.Add(this.btEditar);
             this.groupBox1.Controls.Add(this.tbRua);
             this.groupBox1.Controls.Add(this.tbCidade);
-            this.groupBox1.Controls.Add(this.tbCodPostal);
             this.groupBox1.Controls.Add(this.tbPais);
             this.groupBox1.Controls.Add(this.tbNomeRestaurante);
             this.groupBox1.Controls.Add(this.label5);
@@ -391,6 +384,14 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lista  de Restaurantes";
             // 
+            // tbCodPostal
+            // 
+            this.tbCodPostal.Location = new System.Drawing.Point(94, 115);
+            this.tbCodPostal.Mask = "9999-999";
+            this.tbCodPostal.Name = "tbCodPostal";
+            this.tbCodPostal.Size = new System.Drawing.Size(53, 20);
+            this.tbCodPostal.TabIndex = 36;
+            // 
             // FormGestaoGeralRestaurantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +404,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormGestaoGeralRestaurantes";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão Geral de Restaurantes";
             this.groupBox1.ResumeLayout(false);
@@ -430,7 +432,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbNomeRestaurante;
         private System.Windows.Forms.TextBox tbPais;
-        private System.Windows.Forms.TextBox tbCodPostal;
         private System.Windows.Forms.TextBox tbCidade;
         private System.Windows.Forms.TextBox tbRua;
         private System.Windows.Forms.CheckedListBox cbMetodosPagamento;
@@ -451,5 +452,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.MaskedTextBox tbCodPostal;
     }
 }

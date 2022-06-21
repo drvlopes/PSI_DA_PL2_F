@@ -18,7 +18,7 @@ namespace RestGuest
         public Pedido()
         {
             this.Pagamentos = new HashSet<Pagamento>();
-            this.ItemMenus = new HashSet<ItemMenu>();
+            this.ItemMenuPedidos = new HashSet<ItemMenuPedidos>();
         }
     
         public int Id { get; set; }
@@ -26,13 +26,8 @@ namespace RestGuest
         public int IdCliente { get; set; }
         public int IdRestaurante { get; set; }
         public int IdEstado { get; set; }
-        public string ValorTotal { get; set; }
-
-        public override string ToString()
-        {
-            return $"({Id})-{Cliente.Nome}";
-        }
-
+        public double ValorTotal { get; set; }
+    
         public virtual Trabalhador Trabalhador { get; set; }
         public virtual Cliente Cliente { get; set; }
         public virtual Restaurante Restaurante { get; set; }
@@ -40,6 +35,6 @@ namespace RestGuest
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagamento> Pagamentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemMenu> ItemMenus { get; set; }
+        public virtual ICollection<ItemMenuPedidos> ItemMenuPedidos { get; set; }
     }
 }

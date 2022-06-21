@@ -26,14 +26,14 @@ namespace RestGuest
             modoCriar(false, false);
         }
 
-        private bool isTextBoxEmpty()
+        private bool isTextBoxEmpty()//verifica se todos os campos estão preenchidos
         {
-            if (tbNomeRestaurante.Text.Trim() == "" || tbRua.Text.Trim() == "" || tbCidade.Text.Trim() == "" || tbCodPostal.Text.Trim() == "" || tbPais.Text.Trim() == "")
+            if (tbNomeRestaurante.Text.Trim() == "" || tbRua.Text.Trim() == "" || tbCidade.Text.Trim() == "" || tbCodPostal.Text.Trim() == "-" || tbPais.Text.Trim() == "")
                 return true;
             return false;
         }
 
-        private void clearTexbox()
+        private void clearTexbox()//Limpa todos os campos
         {
             tbNomeRestaurante.Text = "";
             tbRua.Text = "";
@@ -42,7 +42,7 @@ namespace RestGuest
             tbPais.Text = "";
         }
 
-        private void modoCriar(bool modo, bool editar)
+        private void modoCriar(bool modo, bool editar)//permite especificar quais os elementos que podem ser usados ou não
         {
             if (!editar)
                 btEditar.Enabled = false;
@@ -61,7 +61,7 @@ namespace RestGuest
             btPesquisa.Enabled = !modo;
         }
                 
-        private void popularListBoxRestaurante()
+        private void popularListBoxRestaurante()//popula a listbox lbRestaurantes com todos os restaurantes
         {
             lbRestaurantes.DataSource = restGuest.Restaurantes.ToList();
             lbRestaurantes.ClearSelected();
@@ -70,7 +70,7 @@ namespace RestGuest
             btRemoverRestaurante.Enabled = false;
         }
 
-        private void popularCheckboxMetodosPagamento()
+        private void popularCheckboxMetodosPagamento()//popula a combobox cbMetodosPagamento com todos os metodos de pagamento e da check aos que estao ativos
         {
             cbMetodosPagamento.Items.Clear();
 
@@ -86,7 +86,7 @@ namespace RestGuest
             }
         }
 
-        private void popularCheckboxCategorias()
+        private void popularCheckboxCategorias()//popula a combobox cbCategorias com todas as categorias e da check as que estao ativas
         {
             cbCategorias.Items.Clear();
 
@@ -161,9 +161,18 @@ namespace RestGuest
             }
         }
 
-        private void btRemoverRestaurante_Click(object sender, EventArgs e)
+        private void btRemoverRestaurante_Click(object sender, EventArgs e)//remove o restaurante caso não esteja a ser usado na base de dados
         {
             Restaurante restaurante = lbRestaurantes.SelectedItem as Restaurante;
+
+            var trabalhadores = restaurante.Trabalhadores;
+            var items = restaurante.ItemMenus;
+
+            if (trabalhadores.Count() != 0 || items.Count() != 0)
+            {
+                MessageBox.Show("Restaurantes com dados no sistema não podem ser removidos", "Remover Restaurante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var result = MessageBox.Show($"Deseja remover o restaurante {restaurante.Nome}?", "Remover Restaurante", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -218,7 +227,7 @@ namespace RestGuest
                 btRemoverMetodo.Enabled = true;
         }
 
-        private void btRemoverMetodo_Click(object sender, EventArgs e)
+        private void btRemoverMetodo_Click(object sender, EventArgs e)//remove o metodo de pagamento caso não esteja a ser usado na base de dados
         {
             MetodoPagamento metodo = cbMetodosPagamento.SelectedItem as MetodoPagamento;
 
@@ -366,7 +375,7 @@ namespace RestGuest
                 btRemoverCategoria.Enabled = true;
         }
 
-        private void btRemoverCategoria_Click(object sender, EventArgs e)
+        private void btRemoverCategoria_Click(object sender, EventArgs e) //remove a categoria caso não esteja a ser usado na base de dados
         {
             Categoria categoria = cbCategorias.SelectedItem as Categoria;
 

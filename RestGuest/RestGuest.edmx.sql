@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2022 23:57:03
--- Generated from EDMX file: C:\Users\Jmpl\source\repos\PSI_DA_PL2_F\RestGuest\RestGuest.edmx
+-- Date Created: 06/21/2022 11:43:03
+-- Generated from EDMX file: C:\Users\TbpT\Desktop\ipl\S2\DA\PSI_DA_PL2_F\RestGuest\RestGuest.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -47,17 +47,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RestauranteItemMenu_ItemMenu]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RestauranteItemMenu] DROP CONSTRAINT [FK_RestauranteItemMenu_ItemMenu];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedido_ItemMenu]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ItemMenuPedido] DROP CONSTRAINT [FK_ItemMenuPedido_ItemMenu];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedido_Pedido]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ItemMenuPedido] DROP CONSTRAINT [FK_ItemMenuPedido_Pedido];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MoradaPessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas] DROP CONSTRAINT [FK_MoradaPessoa];
 GO
 IF OBJECT_ID(N'[dbo].[FK_MoradaRestaurante]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Restaurantes] DROP CONSTRAINT [FK_MoradaRestaurante];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedidosPedido]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ItemMenuPedidos] DROP CONSTRAINT [FK_ItemMenuPedidosPedido];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ItemMenuPedidosItemMenu]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ItemMenuPedidos] DROP CONSTRAINT [FK_ItemMenuPedidosItemMenu];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Trabalhador_inherits_Pessoa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Pessoas_Trabalhador] DROP CONSTRAINT [FK_Trabalhador_inherits_Pessoa];
@@ -97,6 +97,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Categorias]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Categorias];
 GO
+IF OBJECT_ID(N'[dbo].[ItemMenuPedidos]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ItemMenuPedidos];
+GO
 IF OBJECT_ID(N'[dbo].[Pessoas_Trabalhador]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Pessoas_Trabalhador];
 GO
@@ -105,9 +108,6 @@ IF OBJECT_ID(N'[dbo].[Pessoas_Cliente]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[RestauranteItemMenu]', 'U') IS NOT NULL
     DROP TABLE [dbo].[RestauranteItemMenu];
-GO
-IF OBJECT_ID(N'[dbo].[ItemMenuPedido]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ItemMenuPedido];
 GO
 
 -- --------------------------------------------------
@@ -148,7 +148,7 @@ CREATE TABLE [dbo].[Pedidos] (
     [IdCliente] int  NOT NULL,
     [IdRestaurante] int  NOT NULL,
     [IdEstado] int  NOT NULL,
-    [ValorTotal] nvarchar(max)  NOT NULL
+    [ValorTotal] float  NOT NULL
 );
 GO
 
@@ -164,7 +164,7 @@ CREATE TABLE [dbo].[Pagamentos] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [IdPedido] int  NOT NULL,
     [IdMetodoPagamento] int  NOT NULL,
-    [Valor] nvarchar(max)  NOT NULL
+    [Valor] float  NOT NULL
 );
 GO
 
@@ -183,7 +183,7 @@ CREATE TABLE [dbo].[ItemMenus] (
     [Nome] nvarchar(max)  NOT NULL,
     [Fotografia] varbinary(max)  NOT NULL,
     [Ingredientes] nvarchar(max)  NOT NULL,
-    [Preco] nvarchar(max)  NOT NULL,
+    [Preco] float  NOT NULL,
     [Ativo] bit  NOT NULL
 );
 GO
@@ -193,6 +193,14 @@ CREATE TABLE [dbo].[Categorias] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nome] nvarchar(max)  NOT NULL,
     [Ativo] bit  NOT NULL
+);
+GO
+
+-- Creating table 'ItemMenuPedidos'
+CREATE TABLE [dbo].[ItemMenuPedidos] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [PedidoId] int  NULL,
+    [ItemMenuId] int  NULL
 );
 GO
 
@@ -207,7 +215,7 @@ GO
 
 -- Creating table 'Pessoas_Cliente'
 CREATE TABLE [dbo].[Pessoas_Cliente] (
-    [TotalGasto] nvarchar(max)  NOT NULL,
+    [TotalGasto] float  NOT NULL,
     [NumContribuinte] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
@@ -217,13 +225,6 @@ GO
 CREATE TABLE [dbo].[RestauranteItemMenu] (
     [Restaurantes_Id] int  NOT NULL,
     [ItemMenus_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'ItemMenuPedido'
-CREATE TABLE [dbo].[ItemMenuPedido] (
-    [ItemMenus_Id] int  NOT NULL,
-    [Pedidos_Id] int  NOT NULL
 );
 GO
 
@@ -285,6 +286,12 @@ ADD CONSTRAINT [PK_Categorias]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'ItemMenuPedidos'
+ALTER TABLE [dbo].[ItemMenuPedidos]
+ADD CONSTRAINT [PK_ItemMenuPedidos]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Id] in table 'Pessoas_Trabalhador'
 ALTER TABLE [dbo].[Pessoas_Trabalhador]
 ADD CONSTRAINT [PK_Pessoas_Trabalhador]
@@ -301,12 +308,6 @@ GO
 ALTER TABLE [dbo].[RestauranteItemMenu]
 ADD CONSTRAINT [PK_RestauranteItemMenu]
     PRIMARY KEY CLUSTERED ([Restaurantes_Id], [ItemMenus_Id] ASC);
-GO
-
--- Creating primary key on [ItemMenus_Id], [Pedidos_Id] in table 'ItemMenuPedido'
-ALTER TABLE [dbo].[ItemMenuPedido]
-ADD CONSTRAINT [PK_ItemMenuPedido]
-    PRIMARY KEY CLUSTERED ([ItemMenus_Id], [Pedidos_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -457,30 +458,6 @@ ON [dbo].[RestauranteItemMenu]
     ([ItemMenus_Id]);
 GO
 
--- Creating foreign key on [ItemMenus_Id] in table 'ItemMenuPedido'
-ALTER TABLE [dbo].[ItemMenuPedido]
-ADD CONSTRAINT [FK_ItemMenuPedido_ItemMenu]
-    FOREIGN KEY ([ItemMenus_Id])
-    REFERENCES [dbo].[ItemMenus]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Pedidos_Id] in table 'ItemMenuPedido'
-ALTER TABLE [dbo].[ItemMenuPedido]
-ADD CONSTRAINT [FK_ItemMenuPedido_Pedido]
-    FOREIGN KEY ([Pedidos_Id])
-    REFERENCES [dbo].[Pedidos]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ItemMenuPedido_Pedido'
-CREATE INDEX [IX_FK_ItemMenuPedido_Pedido]
-ON [dbo].[ItemMenuPedido]
-    ([Pedidos_Id]);
-GO
-
 -- Creating foreign key on [Morada_Id] in table 'Pessoas'
 ALTER TABLE [dbo].[Pessoas]
 ADD CONSTRAINT [FK_MoradaPessoa]
@@ -509,6 +486,36 @@ GO
 CREATE INDEX [IX_FK_MoradaRestaurante]
 ON [dbo].[Restaurantes]
     ([Morada_Id]);
+GO
+
+-- Creating foreign key on [PedidoId] in table 'ItemMenuPedidos'
+ALTER TABLE [dbo].[ItemMenuPedidos]
+ADD CONSTRAINT [FK_ItemMenuPedidosPedido]
+    FOREIGN KEY ([PedidoId])
+    REFERENCES [dbo].[Pedidos]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ItemMenuPedidosPedido'
+CREATE INDEX [IX_FK_ItemMenuPedidosPedido]
+ON [dbo].[ItemMenuPedidos]
+    ([PedidoId]);
+GO
+
+-- Creating foreign key on [ItemMenuId] in table 'ItemMenuPedidos'
+ALTER TABLE [dbo].[ItemMenuPedidos]
+ADD CONSTRAINT [FK_ItemMenuPedidosItemMenu]
+    FOREIGN KEY ([ItemMenuId])
+    REFERENCES [dbo].[ItemMenus]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ItemMenuPedidosItemMenu'
+CREATE INDEX [IX_FK_ItemMenuPedidosItemMenu]
+ON [dbo].[ItemMenuPedidos]
+    ([ItemMenuId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Pessoas_Trabalhador'

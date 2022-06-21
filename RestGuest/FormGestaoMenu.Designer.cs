@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label7 = new System.Windows.Forms.Label();
-            this.btPesquisa = new System.Windows.Forms.Button();
-            this.tbPesquisa = new System.Windows.Forms.TextBox();
-            this.cbPesquisa = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbIngredientes = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,47 +44,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pbImagem = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btPesquisa = new System.Windows.Forms.Button();
+            this.tbPesquisa = new System.Windows.Forms.TextBox();
+            this.cbPesquisa = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagem)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 330);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 17);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "Pesquisa por:";
-            // 
-            // btPesquisa
-            // 
-            this.btPesquisa.Location = new System.Drawing.Point(89, 382);
-            this.btPesquisa.Name = "btPesquisa";
-            this.btPesquisa.Size = new System.Drawing.Size(75, 23);
-            this.btPesquisa.TabIndex = 25;
-            this.btPesquisa.Text = "Limpar pesquisa";
-            this.btPesquisa.UseVisualStyleBackColor = true;
-            // 
-            // tbPesquisa
-            // 
-            this.tbPesquisa.Location = new System.Drawing.Point(52, 356);
-            this.tbPesquisa.Name = "tbPesquisa";
-            this.tbPesquisa.Size = new System.Drawing.Size(148, 20);
-            this.tbPesquisa.TabIndex = 24;
-            // 
-            // cbPesquisa
-            // 
-            this.cbPesquisa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPesquisa.FormattingEnabled = true;
-            this.cbPesquisa.Items.AddRange(new object[] {
-            "Nome"});
-            this.cbPesquisa.Location = new System.Drawing.Point(104, 329);
-            this.cbPesquisa.Name = "cbPesquisa";
-            this.cbPesquisa.Size = new System.Drawing.Size(143, 21);
-            this.cbPesquisa.TabIndex = 23;
             // 
             // label4
             // 
@@ -147,7 +110,7 @@
             // mtbPreco
             // 
             this.mtbPreco.Location = new System.Drawing.Point(100, 71);
-            this.mtbPreco.Mask = "€999.99";
+            this.mtbPreco.Mask = "9999.99";
             this.mtbPreco.Name = "mtbPreco";
             this.mtbPreco.Size = new System.Drawing.Size(54, 20);
             this.mtbPreco.TabIndex = 39;
@@ -257,6 +220,46 @@
             this.pbImagem.TabIndex = 37;
             this.pbImagem.TabStop = false;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 330);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 17);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Pesquisa por:";
+            // 
+            // btPesquisa
+            // 
+            this.btPesquisa.Location = new System.Drawing.Point(89, 382);
+            this.btPesquisa.Name = "btPesquisa";
+            this.btPesquisa.Size = new System.Drawing.Size(75, 23);
+            this.btPesquisa.TabIndex = 25;
+            this.btPesquisa.Text = "Limpar pesquisa";
+            this.btPesquisa.UseVisualStyleBackColor = true;
+            // 
+            // tbPesquisa
+            // 
+            this.tbPesquisa.Location = new System.Drawing.Point(52, 356);
+            this.tbPesquisa.Name = "tbPesquisa";
+            this.tbPesquisa.Size = new System.Drawing.Size(148, 20);
+            this.tbPesquisa.TabIndex = 24;
+            this.tbPesquisa.TextChanged += new System.EventHandler(this.tbPesquisa_TextChanged);
+            // 
+            // cbPesquisa
+            // 
+            this.cbPesquisa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPesquisa.FormattingEnabled = true;
+            this.cbPesquisa.Items.AddRange(new object[] {
+            "Nome",
+            "Categoria"});
+            this.cbPesquisa.Location = new System.Drawing.Point(104, 329);
+            this.cbPesquisa.Name = "cbPesquisa";
+            this.cbPesquisa.Size = new System.Drawing.Size(143, 21);
+            this.cbPesquisa.TabIndex = 23;
+            this.cbPesquisa.SelectedIndexChanged += new System.EventHandler(this.cbPesquisa_SelectedIndexChanged);
+            // 
             // FormGestaoMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,10 +283,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btPesquisa;
-        private System.Windows.Forms.TextBox tbPesquisa;
-        private System.Windows.Forms.ComboBox cbPesquisa;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbIngredientes;
         private System.Windows.Forms.Label label3;
@@ -300,5 +299,9 @@
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cbPesquisa;
+        private System.Windows.Forms.TextBox tbPesquisa;
+        private System.Windows.Forms.Button btPesquisa;
+        private System.Windows.Forms.Label label7;
     }
 }

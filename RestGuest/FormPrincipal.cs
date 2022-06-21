@@ -12,14 +12,13 @@ namespace RestGuest
 {
     public partial class FormPrincipal : Form
     {
-         RestGuestContainer restGuest = new RestGuestContainer();
         public FormPrincipal()
         {
             InitializeComponent();
             var array = new string[4] { "Recebido", "Em Processamento", "Cancelado", "Concluído"};
-
+            RestGuestContainer restGuest = new RestGuestContainer();
             var estados = restGuest.Estados.ToList();
-            if(estados == null)
+            if(estados.Count == 0)
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -37,6 +36,7 @@ namespace RestGuest
             FormGestaoClientes formGestaoClientes = new FormGestaoClientes();
             this.Enabled = false;
             formGestaoClientes.Closed += (s, args) => this.Enabled = true;
+            formGestaoClientes.Closed += (s, args) => clearLabels();
             formGestaoClientes.Show();
         }
 
@@ -45,6 +45,7 @@ namespace RestGuest
             FormGestaoGeralRestaurantes formGestaoGeralRestaurantes = new FormGestaoGeralRestaurantes();
             this.Enabled = false;
             formGestaoGeralRestaurantes.Closed += (s, args) => this.Enabled = true;
+            formGestaoGeralRestaurantes.Closed += (s, args) => clearLabels();
             formGestaoGeralRestaurantes.Show();
         }
 
@@ -60,6 +61,7 @@ namespace RestGuest
             FormGestaoIndividualRestaurante formGestaoIndividualRestaurantes = new FormGestaoIndividualRestaurante(restaurante);
             this.Enabled = false;
             formGestaoIndividualRestaurantes.Closed += (s,args) => this.Enabled = true; 
+            formGestaoIndividualRestaurantes.Closed += (s,args) => clearLabels();
             formGestaoIndividualRestaurantes.Show();
         }
 
@@ -68,13 +70,17 @@ namespace RestGuest
             FormGestaoMenu formGestaoMenu = new FormGestaoMenu();
             this.Enabled = false;
             formGestaoMenu.Closed += (s, args) => this.Enabled = true;
+            formGestaoMenu.Closed += (s, args) => clearLabels();
             formGestaoMenu.Show();
         }
 
         private void FormPrincipal_Shown(object sender, EventArgs e)
         {
+            RestGuestContainer restGuest = new RestGuestContainer();
             toolStripComboBox1.Items.Clear();
+
             var restaurantes = restGuest.Restaurantes.ToList();
+
             if(restaurantes == null)
                 return;
 
@@ -83,6 +89,7 @@ namespace RestGuest
                 toolStripComboBox1.Items.Add(item);
             }
         }
+
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -99,6 +106,7 @@ namespace RestGuest
             FormGestaoPedidos formGestaoPedidos = new FormGestaoPedidos(restaurante, trabalhador);
             this.Enabled = false;
             formGestaoPedidos.Closed += (s, args) => this.Enabled = true;
+            formGestaoPedidos.Closed += (s, args) => clearLabels();
             formGestaoPedidos.Show();
         }
 
@@ -132,6 +140,19 @@ namespace RestGuest
             label4.Text = trabalhador.Nome;
 
 
+        }
+
+        private void clearLabels()
+        {
+            if(toolStripComboBox1.SelectedIndex == -1)
+            label3.Text = "";
+            if(toolStripComboBox2.SelectedIndex == -1)
+            label4.Text = "";
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

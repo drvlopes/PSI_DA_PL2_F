@@ -20,7 +20,7 @@ namespace RestGuest
             InitializeComponent();
 
             cbPesquisa.SelectedIndex = 0;
-            popularCheckbox();
+            popularCheckbox(null);
             clearTexbox();
             modoCriar(false, false);
 
@@ -63,7 +63,7 @@ namespace RestGuest
                     if (MessageBox.Show("Preencha todos os campos antes de guardar!", "Guardar Item de Menu", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         modoCriar(false, false);
-                        popularCheckbox();
+                        popularCheckbox(null);
                         btAdicionar.Text = "Novo Item de Menu";
                     }
 
@@ -77,7 +77,7 @@ namespace RestGuest
                 else if (result == DialogResult.Cancel)
                 {
                     modoCriar(false, false);
-                    popularCheckbox();
+                    popularCheckbox(null);
                     btAdicionar.Text = "Novo Restaurante";
                     return;
                 }
@@ -86,7 +86,7 @@ namespace RestGuest
                 ItemMenu itemMenu = new ItemMenu();
                 itemMenu.Nome = tbNome.Text;
                 itemMenu.Ingredientes = tbIngredientes.Text;
-                itemMenu.Preco = mtbPreco.Text;
+                itemMenu.Preco = Double.Parse(mtbPreco.Text);
                 itemMenu.Categoria = categoria;
 
                 ImageConverter _imageConverter = new ImageConverter();
@@ -97,18 +97,19 @@ namespace RestGuest
                 restGuest.SaveChanges();
 
                 modoCriar(false, false);
-                popularCheckbox();
+                popularCheckbox(null);
                 btAdicionar.Text = "Novo Item de Menu";
             }
         }
 
-        private void popularCheckbox()
+        private void popularCheckbox(IEnumerable<ItemMenu> pesquisa)
         {
             cbItemsMenu.Items.Clear();
             btRemover.Enabled = false;
-            var list = restGuest.ItemMenus.ToList();
+            if(pesquisa == null)
+                pesquisa = restGuest.ItemMenus.ToList();
 
-            foreach (var item in list)
+            foreach (var item in pesquisa)
             {
                 cbItemsMenu.Items.Add(item);
                 if (item.Ativo)
@@ -202,15 +203,25 @@ namespace RestGuest
 
             tbNome.Text = itemMenu.Nome;
             tbIngredientes.Text = itemMenu.Ingredientes;
-            mtbPreco.Text = itemMenu.Preco;
+            mtbPreco.Text = itemMenu.Preco.ToString();
             cbCategoria.SelectedItem = itemMenu.Categoria;
 
-            pbImagem.Image = (Bitmap)((new ImageConverter()).ConvertFrom(itemMenu.Fotografia));
+            if(itemMenu.Fotografia.Length != 0)
+                pbImagem.Image = (Bitmap)((new ImageConverter()).ConvertFrom(itemMenu.Fotografia));
         }
 
         private void btRemover_Click(object sender, EventArgs e)
         {
             ItemMenu itemMenu = cbItemsMenu.SelectedItem as ItemMenu;
+
+            var restaurantes = itemMenu.Restaurantes;
+            var pedidos = itemMenu.ItemMenuPedidos;
+
+            if (restaurantes.Count() != 0 || pedidos.Count() != 0)
+            {
+                MessageBox.Show("Items de menu associados a restaurantes ou com faturas no sistema não podem ser removidos", "Remover Item de Menu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var result = MessageBox.Show($"Deseja remover o item?", "Remover Item de Menu", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -219,7 +230,7 @@ namespace RestGuest
 
             restGuest.ItemMenus.Remove(itemMenu);
             restGuest.SaveChanges();
-            popularCheckbox();
+            popularCheckbox(null);
         }
 
         private bool isTexboxEmpty()
@@ -261,7 +272,7 @@ namespace RestGuest
 
                     btEditar.Text = "Editar";
                     btAdicionar.Enabled = true;
-                    popularCheckbox();
+                    popularCheckbox(null);
                     cbCategoria.SelectedItem = itemMenu;
 
                     return;
@@ -271,7 +282,7 @@ namespace RestGuest
 
                 itemMenu.Nome = tbNome.Text;
                 itemMenu.Ingredientes = tbIngredientes.Text;
-                itemMenu.Preco = mtbPreco.Text;
+                itemMenu.Preco = Double.Parse(mtbPreco.Text);
                 itemMenu.Categoria = categoria;
 
                 ImageConverter _imageConverter = new ImageConverter();
@@ -282,9 +293,32 @@ namespace RestGuest
 
                 btEditar.Text = "Editar";
                 btAdicionar.Enabled = true;
-                popularCheckbox();
+                popularCheckbox(null);
                 cbCategoria.SelectedItem = itemMenu;
             }
+        }
+
+        private void cbPesquisa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            btEditar.Enabled = false;
+            clearTexbox();
+
+            IEnumerable<ItemMenu> pesquisa;
+
+            if (cbPesquisa.SelectedIndex == 0)
+                pesquisa = restGuest.ItemMenus.ToList().Where(p => p.Nome.ToUpper().Contains(tbPesquisa.Text.ToUpper()));
+            else 
+                pesquisa = restGuest.ItemMenus.ToList().Where(p => p.Categoria.Nome.ToUpper().Contains(tbPesquisa.Text.ToUpper()));
+
+            if (pesquisa.Count() != 0)
+                popularCheckbox(pesquisa);
+            else
+                cbItemsMenu.Items.Clear();
         }
     }
 }

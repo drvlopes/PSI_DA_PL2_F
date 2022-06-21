@@ -103,6 +103,9 @@
     <Compile Include="ItemMenu.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemMenuPedidos.cs">
+      <DependentUpon>RestGuest.tt</DependentUpon>
+    </Compile>
     <Compile Include="MetodoPagamento.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
@@ -123,6 +126,7 @@
     <Compile Include="Restaurante.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
+    <Compile Include="RestGest.cs" />
     <Compile Include="RestGuest.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

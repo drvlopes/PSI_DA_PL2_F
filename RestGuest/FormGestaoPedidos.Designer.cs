@@ -30,10 +30,6 @@
         {
             this.lbPedidos = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btPesquisa = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbPesquisa = new System.Windows.Forms.ComboBox();
-            this.tbPesquisa = new System.Windows.Forms.TextBox();
             this.cbEstadoLista = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.restGuestDataSet = new RestGuest.RestGuestDataSet();
@@ -43,12 +39,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btCancelar = new System.Windows.Forms.Button();
             this.numQuantidade = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbEstadoPedido = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.btNovoPedido = new System.Windows.Forms.Button();
             this.btRemoverItem = new System.Windows.Forms.Button();
@@ -56,12 +51,12 @@
             this.lbItemsEscolhidos = new System.Windows.Forms.ListBox();
             this.lbListaItems = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbPagar = new System.Windows.Forms.TextBox();
             this.btPagar = new System.Windows.Forms.Button();
             this.lbPagar = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.cbPagar = new System.Windows.Forms.ComboBox();
-            this.mtbPagar = new System.Windows.Forms.MaskedTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lbIngredientes = new System.Windows.Forms.Label();
@@ -88,60 +83,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btPesquisa);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbPesquisa);
-            this.groupBox1.Controls.Add(this.tbPesquisa);
             this.groupBox1.Controls.Add(this.cbEstadoLista);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lbPedidos);
             this.groupBox1.Location = new System.Drawing.Point(12, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 547);
+            this.groupBox1.Size = new System.Drawing.Size(259, 468);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de Pedidos";
-            // 
-            // btPesquisa
-            // 
-            this.btPesquisa.Location = new System.Drawing.Point(92, 518);
-            this.btPesquisa.Name = "btPesquisa";
-            this.btPesquisa.Size = new System.Drawing.Size(75, 23);
-            this.btPesquisa.TabIndex = 16;
-            this.btPesquisa.Text = "Limpar pesquisa";
-            this.btPesquisa.UseVisualStyleBackColor = true;
-            this.btPesquisa.Click += new System.EventHandler(this.btPesquisa_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 467);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 17);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Pesquisa por:";
-            // 
-            // cbPesquisa
-            // 
-            this.cbPesquisa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPesquisa.FormattingEnabled = true;
-            this.cbPesquisa.Items.AddRange(new object[] {
-            "Nome Cliente",
-            "Nome Funcionário",
-            "NIF Cliente",
-            "Numero de pedido"});
-            this.cbPesquisa.Location = new System.Drawing.Point(116, 466);
-            this.cbPesquisa.Name = "cbPesquisa";
-            this.cbPesquisa.Size = new System.Drawing.Size(136, 21);
-            this.cbPesquisa.TabIndex = 14;
-            // 
-            // tbPesquisa
-            // 
-            this.tbPesquisa.Location = new System.Drawing.Point(55, 493);
-            this.tbPesquisa.Name = "tbPesquisa";
-            this.tbPesquisa.Size = new System.Drawing.Size(148, 20);
-            this.tbPesquisa.TabIndex = 15;
             // 
             // cbEstadoLista
             // 
@@ -172,7 +122,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(187, 14);
+            this.label3.Location = new System.Drawing.Point(228, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 17);
             this.label3.TabIndex = 0;
@@ -217,12 +167,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btCancelar);
             this.groupBox3.Controls.Add(this.numQuantidade);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.cbCategoria);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.cbEstadoPedido);
             this.groupBox3.Controls.Add(this.comboBox2);
             this.groupBox3.Controls.Add(this.btNovoPedido);
             this.groupBox3.Controls.Add(this.btRemoverItem);
@@ -240,6 +189,17 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dados do Pedido";
+            // 
+            // btCancelar
+            // 
+            this.btCancelar.Enabled = false;
+            this.btCancelar.Location = new System.Drawing.Point(112, 345);
+            this.btCancelar.Name = "btCancelar";
+            this.btCancelar.Size = new System.Drawing.Size(100, 38);
+            this.btCancelar.TabIndex = 7;
+            this.btCancelar.Text = "Cancelar Pedido";
+            this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // numQuantidade
             // 
@@ -289,34 +249,15 @@
             this.cbCategoria.TabIndex = 14;
             this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(278, 364);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 17);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Estado:";
-            // 
-            // cbEstadoPedido
-            // 
-            this.cbEstadoPedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEstadoPedido.FormattingEnabled = true;
-            this.cbEstadoPedido.Location = new System.Drawing.Point(340, 363);
-            this.cbEstadoPedido.Name = "cbEstadoPedido";
-            this.cbEstadoPedido.Size = new System.Drawing.Size(111, 21);
-            this.cbEstadoPedido.TabIndex = 12;
-            // 
             // comboBox2
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(248, 13);
+            this.comboBox2.Location = new System.Drawing.Point(289, 12);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(125, 21);
+            this.comboBox2.Size = new System.Drawing.Size(162, 21);
             this.comboBox2.TabIndex = 11;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
             // 
             // btNovoPedido
             // 
@@ -337,6 +278,7 @@
             this.btRemoverItem.TabIndex = 7;
             this.btRemoverItem.Text = "<<";
             this.btRemoverItem.UseVisualStyleBackColor = true;
+            this.btRemoverItem.Click += new System.EventHandler(this.btRemoverItem_Click);
             // 
             // btAdicionarItem
             // 
@@ -355,6 +297,7 @@
             this.lbItemsEscolhidos.Name = "lbItemsEscolhidos";
             this.lbItemsEscolhidos.Size = new System.Drawing.Size(178, 264);
             this.lbItemsEscolhidos.TabIndex = 6;
+            this.lbItemsEscolhidos.SelectedIndexChanged += new System.EventHandler(this.lbItemsEscolhidos_SelectedIndexChanged);
             // 
             // lbListaItems
             // 
@@ -363,15 +306,16 @@
             this.lbListaItems.Name = "lbListaItems";
             this.lbListaItems.Size = new System.Drawing.Size(178, 264);
             this.lbListaItems.TabIndex = 4;
+            this.lbListaItems.SelectedIndexChanged += new System.EventHandler(this.lbListaItems_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbPagar);
             this.groupBox2.Controls.Add(this.btPagar);
             this.groupBox2.Controls.Add(this.lbPagar);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.cbPagar);
-            this.groupBox2.Controls.Add(this.mtbPagar);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Location = new System.Drawing.Point(777, 18);
             this.groupBox2.Name = "groupBox2";
@@ -379,6 +323,13 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pagamento";
+            // 
+            // tbPagar
+            // 
+            this.tbPagar.Location = new System.Drawing.Point(75, 47);
+            this.tbPagar.Name = "tbPagar";
+            this.tbPagar.Size = new System.Drawing.Size(82, 20);
+            this.tbPagar.TabIndex = 21;
             // 
             // btPagar
             // 
@@ -388,6 +339,7 @@
             this.btPagar.TabIndex = 20;
             this.btPagar.Text = "Pagar";
             this.btPagar.UseVisualStyleBackColor = true;
+            this.btPagar.Click += new System.EventHandler(this.btPagar_Click);
             // 
             // lbPagar
             // 
@@ -426,14 +378,7 @@
             this.cbPagar.Name = "cbPagar";
             this.cbPagar.Size = new System.Drawing.Size(151, 21);
             this.cbPagar.TabIndex = 2;
-            // 
-            // mtbPagar
-            // 
-            this.mtbPagar.Location = new System.Drawing.Point(75, 48);
-            this.mtbPagar.Mask = "€9999.99";
-            this.mtbPagar.Name = "mtbPagar";
-            this.mtbPagar.Size = new System.Drawing.Size(67, 20);
-            this.mtbPagar.TabIndex = 1;
+            this.cbPagar.SelectionChangeCommitted += new System.EventHandler(this.cbPagar_SelectionChangeCommitted);
             // 
             // label9
             // 
@@ -493,19 +438,23 @@
             this.btExportar.TabIndex = 6;
             this.btExportar.Text = "Exportar Fatura";
             this.btExportar.UseVisualStyleBackColor = true;
+            this.btExportar.Click += new System.EventHandler(this.btExportar_Click);
             // 
             // FormGestaoPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 557);
+            this.ClientSize = new System.Drawing.Size(968, 479);
             this.Controls.Add(this.btExportar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormGestaoPedidos";
-            this.Text = "Gestão de Pedidos";
+            this.Text = " ";
+            this.Shown += new System.EventHandler(this.FormGestaoPedidos_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.restGuestDataSet)).EndInit();
@@ -527,10 +476,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbEstadoLista;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btPesquisa;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbPesquisa;
-        private System.Windows.Forms.TextBox tbPesquisa;
         private System.Windows.Forms.Label lbFuncionario;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -543,11 +488,8 @@
         private System.Windows.Forms.ListBox lbListaItems;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button btNovoPedido;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cbEstadoPedido;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MaskedTextBox mtbPagar;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -563,5 +505,7 @@
         private System.Windows.Forms.NumericUpDown numQuantidade;
         private System.Windows.Forms.Label lbIngredientes;
         private RestGuestDataSet restGuestDataSet;
+        private System.Windows.Forms.TextBox tbPagar;
+        private System.Windows.Forms.Button btCancelar;
     }
 }

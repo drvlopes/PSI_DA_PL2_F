@@ -34,5 +34,6 @@ namespace RestGuest
         public virtual DbSet<MetodoPagamento> MetodoPagamentos { get; set; }
         public virtual DbSet<ItemMenu> ItemMenus { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<ItemMenuPedidos> ItemMenuPedidos { get; set; }
     }
 }

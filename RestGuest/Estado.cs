@@ -22,12 +22,7 @@ namespace RestGuest
     
         public int Id { get; set; }
         public string Status { get; set; }
-
-        public override string ToString()
-        {
-            return Status;
-        }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedidos { get; set; }
     }

@@ -24,17 +24,7 @@ namespace RestGuest
     
         public int Id { get; set; }
         public string Nome { get; set; }
-
-        public override string ToString()
-        {
-            return Nome;
-        }
-
-        public string detalhes()
-        {
-            return $"{Nome}: funcionários({Trabalhadores.Count})";
-        }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Trabalhador> Trabalhadores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

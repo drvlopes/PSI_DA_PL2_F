@@ -17,7 +17,7 @@ namespace RestGuest
         public int Id { get; set; }
         public int IdPedido { get; set; }
         public int IdMetodoPagamento { get; set; }
-        public string Valor { get; set; }
+        public double Valor { get; set; }
     
         public virtual Pedido Pedido { get; set; }
         public virtual MetodoPagamento MetodoPagamento { get; set; }

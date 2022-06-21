@@ -17,6 +17,7 @@ namespace RestGuest
         public FormGestaoIndividualRestaurante(Restaurante restaurante)
         {
             InitializeComponent();
+
             this.restaurante = restaurante;
             popularListBox();
             popularlbCategorias();
@@ -64,6 +65,7 @@ namespace RestGuest
 
                     return;
                 }
+                Restaurante res = restGuest.Restaurantes.Find(restaurante.Id);
 
                 Morada morada = new Morada();
                 morada.Rua = tbRua.Text;
@@ -78,7 +80,7 @@ namespace RestGuest
                 trabalhador.Posicao = tbPosicao.Text;
                 trabalhador.Telemovel = mtbIndicativo.Text + tbTelemovel.Text;
 
-                trabalhador.Restaurante = restaurante;
+                trabalhador.Restaurante = res;
 
                 restGuest.Moradas.Add(morada);
                 restGuest.Pessoas.Add(trabalhador);
@@ -93,9 +95,12 @@ namespace RestGuest
         }
         private void popularListBox()
         {
-            lbTrabalhadores.DataSource = restaurante.Trabalhadores.ToList();
+            Restaurante res = restGuest.Restaurantes.Find(restaurante.Id);
+            lbTrabalhadores.DataSource = res.Trabalhadores.ToList();
             lbTrabalhadores.ClearSelected();
             clearTexbox();
+            btEditar.Enabled = false;
+            btRemover.Enabled = false;
         }
 
         private void clearTexbox()
@@ -111,14 +116,13 @@ namespace RestGuest
         }
         private void modoCriar(bool modo, bool editar)
         {
-            if (!editar)
-                btEditar.Enabled = !modo;
+
+            btEditar.Enabled = editar;
 
             lbTrabalhadores.Enabled = !modo;
             cbPesquisa.Enabled = !modo;
             tbPesquisa.Enabled = !modo;
             btPesquisa.Enabled = !modo;
-            btRemover.Enabled = !modo;
 
             tbNomeTrabalhador.Enabled = modo;
             tbRua.Enabled = modo;
@@ -140,8 +144,13 @@ namespace RestGuest
 
         private void lbTrabalhadores_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btRemover.Enabled = false;
+            btEditar.Enabled = false;
             if (!(lbTrabalhadores.SelectedItem is Trabalhador trabalhador))
                 return;
+
+            btEditar.Enabled = true;
+            btRemover.Enabled = true;
 
             Morada morada = trabalhador.Morada;
 
@@ -181,7 +190,18 @@ namespace RestGuest
 
         private void btRemover_Click(object sender, EventArgs e)
         {
+            if (lbTrabalhadores.SelectedIndex == -1)
+                return;
+
             Pessoa trabalhador = lbTrabalhadores.SelectedItem as Trabalhador;
+
+            var pedidos = restGuest.Pedidos.Where(p => p.IdTrabalhador == trabalhador.Id);
+
+            if (pedidos.Count() != 0)
+            {
+                MessageBox.Show("Trabalhadores com faturas no sistema não podem ser removidos", "Remover trabalhador", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var result = MessageBox.Show($"Deseja remover o trabalhador {trabalhador.Nome}?", "Remover trabalhador", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -314,6 +334,11 @@ namespace RestGuest
                 res.ItemMenus.Add(cbItens.SelectedItem as ItemMenu);
 
             restGuest.SaveChanges();
+        }
+
+        private void cbPesquisa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbPesquisa_TextChanged(sender, e);
         }
     }
 }

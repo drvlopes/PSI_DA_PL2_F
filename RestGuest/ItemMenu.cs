@@ -18,7 +18,7 @@ namespace RestGuest
         public ItemMenu()
         {
             this.Restaurantes = new HashSet<Restaurante>();
-            this.Pedidos = new HashSet<Pedido>();
+            this.ItemMenuPedidos = new HashSet<ItemMenuPedidos>();
         }
     
         public int Id { get; set; }
@@ -26,18 +26,13 @@ namespace RestGuest
         public string Nome { get; set; }
         public byte[] Fotografia { get; set; }
         public string Ingredientes { get; set; }
-        public string Preco { get; set; }
+        public double Preco { get; set; }
         public bool Ativo { get; set; }
-
-        public override string ToString()
-        {
-            return Nome + ":" + Preco;
-        }
-
+    
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restaurante> Restaurantes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedidos { get; set; }
+        public virtual ICollection<ItemMenuPedidos> ItemMenuPedidos { get; set; }
     }
 }
