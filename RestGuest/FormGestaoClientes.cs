@@ -14,8 +14,7 @@ namespace RestGuest
     public partial class FormGestaoClientes : Form
     {
 
-        RestGuestContainer restGuest = new RestGuestContainer();
-
+      RestGuestContainer restGuest = new RestGuestContainer();
         public FormGestaoClientes()
         {
             InitializeComponent();
@@ -42,6 +41,7 @@ namespace RestGuest
                     if(MessageBox.Show("Preencha todos os campos antes de guardar!", "Guardar Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         modoCriar(false, false);
+                        popularListBox();
                         btNovoCliente.Text = "Novo Cliente";
                     }
 
@@ -51,6 +51,13 @@ namespace RestGuest
                 if (!int.TryParse(tbNif.Text, out int nif) || tbNif.Text.Length != 9)
                 {
                     MessageBox.Show("O NIF têm de ter 9 digitos!", "Guardar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                var clientes = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.NumContribuinte == nif.ToString());
+                if(clientes.Count() != 0)
+                {
+                    MessageBox.Show("O NIF Introduzido já se encontra na base de dados!", "Guardar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -67,7 +74,7 @@ namespace RestGuest
                 else if (result == DialogResult.Cancel)
                 {
                     modoCriar(false, false);
-
+                    popularListBox();
                     btNovoCliente.Text = "Novo Cliente";
 
                     return;
@@ -82,12 +89,12 @@ namespace RestGuest
                 Cliente cliente = new Cliente();
                 cliente.Nome = tbNome.Text;
                 cliente.Morada = morada;
-                cliente.TotalGasto = "0";
+                cliente.TotalGasto = 0;
                 cliente.NumContribuinte = tbNif.Text;
                 cliente.Telemovel = mtbIndicativo.Text + tbTelemovel.Text;
 
-                restGuest.Moradas.Add(morada);
-                restGuest.Pessoas.Add(cliente);
+              restGuest.Moradas.Add(morada);
+               restGuest.Pessoas.Add(cliente);
 
                 restGuest.SaveChanges();
 
@@ -98,14 +105,16 @@ namespace RestGuest
             }
         }
 
-        private void popularListBox()
+        private void popularListBox()//popula a listbox lbClientes com todos os clientes
         {
             lbClientes.DataSource = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>();
             lbClientes.ClearSelected();
             clearTexbox();
+            btEditar.Enabled = false;
+            btRemover.Enabled = false;
         }
 
-        private void clearTexbox()
+        private void clearTexbox()//Limpa todos os campos
         {
             tbNome.Text = "";
             tbRua.Text = "";
@@ -115,20 +124,22 @@ namespace RestGuest
             tbNif.Text = "";
             tbTelemovel.Text = "";
             mtbIndicativo.Text = "";
-            lbTotal.Text = "€ 0";
+            lbTotal.Text = "0 €";
         }
 
-        private bool isTexboxEmpty()
+        private bool isTexboxEmpty() //verifica se todos os campos estão preenchidos
         {
-            if(tbNome.Text.Trim() == "" || tbRua.Text.Trim() == "" || tbCidade.Text.Trim() == "" || tbCodPostal.Text.Trim() == "" || tbPais.Text.Trim() == "" || tbNif.Text.Trim() == "" || tbTelemovel.Text.Trim() == "" || mtbIndicativo.Text == "+")
+            if(tbNome.Text.Trim() == "" || tbRua.Text.Trim() == "" || tbCidade.Text.Trim() == "" || tbCodPostal.Text.Trim() == "-" || tbPais.Text.Trim() == "" || tbNif.Text.Trim() == "" || tbTelemovel.Text.Trim() == "" || mtbIndicativo.Text == "+")
                 return true;
             return false;
         }
 
-        private void modoCriar(bool modo, bool editar)
+        private void modoCriar(bool modo, bool editar)//permite especificar quais os elementos que podem ser usados ou não
         {
             if (!editar)
-                btEditar.Enabled = !modo;
+                btEditar.Enabled = false;
+            else
+                btEditar.Enabled = true;
 
             lbClientes.Enabled = !modo;
             cbPesquisa.Enabled = !modo;
@@ -145,48 +156,62 @@ namespace RestGuest
             tbTelemovel.Enabled = modo;
             mtbIndicativo.Enabled = modo;
         }
-
+        
         private void tbPesquisa_TextChanged(object sender, EventArgs e)
         {
-            IEnumerable<Cliente> teste;
+            btEditar.Enabled = false;
+            clearTexbox();
+
+            IEnumerable<Cliente> pesquisa;
 
             if(cbPesquisa.SelectedIndex == 0)
-                teste = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Nome.ToUpper().Contains(tbPesquisa.Text.ToUpper()));
+                pesquisa = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Nome.ToUpper().Contains(tbPesquisa.Text.ToUpper()));//pesquisa por nome
             else if(cbPesquisa.SelectedIndex == 1)
-                teste = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Telemovel.Contains(tbPesquisa.Text));
+                pesquisa = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.Telemovel.Contains(tbPesquisa.Text));//pesquisa por telemovel
             else
-                teste = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.NumContribuinte.Contains(tbPesquisa.Text));
+                pesquisa = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.NumContribuinte.Contains(tbPesquisa.Text));//pesquisa por numero de contribuinte
 
-            if (teste.Count() != 0)
-                lbClientes.DataSource = teste.ToList<Cliente>();
+            if (pesquisa.Count() != 0)
+                lbClientes.DataSource = pesquisa.ToList<Cliente>();
             else
                 lbClientes.DataSource = null;
         }
-
-        private void btRemover_Click(object sender, EventArgs e)
+        
+        private void btRemover_Click(object sender, EventArgs e)//remove o cliente caso não esteja a ser usado na base de dados
         {
-            Pessoa cliente = lbClientes.SelectedItem as Cliente;
+            Cliente cliente = lbClientes.SelectedItem as Cliente;
 
-            var result = MessageBox.Show($"Deseja remover o cliente {cliente.Nome}?", "Remover cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var pedidos = restGuest.Pedidos.Where(p => p.IdCliente == cliente.Id);
+
+            if(pedidos.Count() != 0)
+            {
+                MessageBox.Show("Clientes com faturas no sistema não podem ser removidos", "Remover Cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+                
+            var result = MessageBox.Show($"Deseja remover o cliente {cliente.Nome}?", "Remover Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.No)
                 return;
 
-            
             Morada morada = cliente.Morada;
 
             restGuest.Pessoas.Remove(cliente);
             restGuest.Moradas.Remove(morada);
 
             restGuest.SaveChanges();
+
             popularListBox();
         }
-
+        
         private void lbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btRemover.Enabled = false;
+            btEditar.Enabled = false;
             if (!(lbClientes.SelectedItem is Cliente cliente))
                 return;
-
+            btEditar.Enabled = true;
+            btRemover.Enabled = true;
             Morada morada = cliente.Morada;
 
             tbNome.Text = cliente.Nome;
@@ -197,7 +222,7 @@ namespace RestGuest
             tbNif.Text = cliente.NumContribuinte;
             mtbIndicativo.Text  = cliente.Telemovel.Substring(0, cliente.Telemovel.Length - 9);
             tbTelemovel.Text = cliente.Telemovel.Substring(cliente.Telemovel.Length - 9);
-            lbTotal.Text = $"€ {cliente.TotalGasto}";
+            lbTotal.Text = $"{cliente.Total()} €";
         }
 
         private void btEditar_Click(object sender, EventArgs e)
@@ -209,6 +234,7 @@ namespace RestGuest
                 modoCriar(true, true);
                 btEditar.Text = "Guardar/Cancelar";
                 btNovoCliente.Enabled = false;
+                btRemover.Enabled = false;
             }
             else
             {
@@ -261,7 +287,7 @@ namespace RestGuest
 
         private void cbPesquisa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbPesquisa_TextChanged(sender, e);
+           tbPesquisa_TextChanged(sender, e);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -269,5 +295,7 @@ namespace RestGuest
             tbPesquisa.Text = "";
             cbPesquisa.SelectedIndex = 0;
         }
+
+    
     }
 }

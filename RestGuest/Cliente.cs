@@ -19,13 +19,8 @@ namespace RestGuest
         {
             this.Pedidos = new HashSet<Pedido>();
         }
-
-        public override string ToString()
-        {
-            return Nome + $": {NumContribuinte}";
-        }
-
-        public string TotalGasto { get; set; }
+    
+        public double TotalGasto { get; set; }
         public string NumContribuinte { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

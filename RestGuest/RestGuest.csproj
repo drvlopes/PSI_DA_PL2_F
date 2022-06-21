@@ -76,6 +76,24 @@
     <Compile Include="FormGestaoGeralRestaurantes.Designer.cs">
       <DependentUpon>FormGestaoGeralRestaurantes.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGestaoIndividualRestaurante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestaoIndividualRestaurante.Designer.cs">
+      <DependentUpon>FormGestaoIndividualRestaurante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGestaoMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestaoMenu.Designer.cs">
+      <DependentUpon>FormGestaoMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGestaoPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGestaoPedidos.Designer.cs">
+      <DependentUpon>FormGestaoPedidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +101,9 @@
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemMenu.cs">
+      <DependentUpon>RestGuest.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMenuPedidos.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
     <Compile Include="MetodoPagamento.cs">
@@ -105,6 +126,7 @@
     <Compile Include="Restaurante.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
+    <Compile Include="RestGest.cs" />
     <Compile Include="RestGuest.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,6 +142,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RestGuest.edmx</DependentUpon>
     </Compile>
+    <Compile Include="RestGuestDataSet.cs">
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RestGuestDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Trabalhador.cs">
       <DependentUpon>RestGuest.tt</DependentUpon>
     </Compile>
@@ -128,6 +158,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGestaoGeralRestaurantes.resx">
       <DependentUpon>FormGestaoGeralRestaurantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGestaoIndividualRestaurante.resx">
+      <DependentUpon>FormGestaoIndividualRestaurante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGestaoMenu.resx">
+      <DependentUpon>FormGestaoMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGestaoPedidos.resx">
+      <DependentUpon>FormGestaoPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
@@ -140,9 +179,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Cliente.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,11 +198,23 @@
     <None Include="RestGuest.edmx.diagram">
       <DependentUpon>RestGuest.edmx</DependentUpon>
     </None>
+    <None Include="RestGuestDataSet.xsc">
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RestGuestDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RestGuestDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RestGuestDataSet.xss">
+      <DependentUpon>RestGuestDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Screenshot_74.png" />
     <Content Include="RestGuest.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RestGuest.Context.cs</LastGenOutput>
@@ -178,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

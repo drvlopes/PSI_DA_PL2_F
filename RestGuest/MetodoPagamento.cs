@@ -19,12 +19,7 @@ namespace RestGuest
         {
             this.Pagamentos = new HashSet<Pagamento>();
         }
-
-        public override string ToString()
-        {
-            return MetPagamento;
-        }
-
+    
         public int Id { get; set; }
         public string MetPagamento { get; set; }
         public bool Ativo { get; set; }
