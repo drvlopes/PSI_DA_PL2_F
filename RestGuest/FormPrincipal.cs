@@ -154,5 +154,10 @@ namespace RestGuest
         {
             this.Close();
         }
+
+        private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripComboBox1_DropDownClosed(sender, e);
+        }
     }
 }

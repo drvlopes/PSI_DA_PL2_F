@@ -54,6 +54,13 @@ namespace RestGuest
                     return;
                 }
 
+                var clientes = restGuest.Pessoas.OfType<Cliente>().ToList<Cliente>().Where<Cliente>(p => p.NumContribuinte == nif.ToString());
+                if(clientes.Count() != 0)
+                {
+                    MessageBox.Show("O NIF Introduzido já se encontra na base de dados!", "Guardar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (!int.TryParse(tbTelemovel.Text, out int telemovel) || tbTelemovel.Text.Length != 9)
                 {
                     MessageBox.Show("O numero de telemovel têm de ter 9 digitos!", "Guardar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

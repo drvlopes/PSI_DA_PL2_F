@@ -167,6 +167,9 @@ namespace RestGuest
                 btCancelar.Enabled = true;
             popularEscolhidos();
 
+            if (lbItemsEscolhidos.Items.Count == 0)
+                btPagar.Enabled = false;
+
             label8.Text = $"{pedido.ValorTotal} €";
             lbPagar.Text = $"{pedido.ValorTotal} €";
             tbPagar.Text = $"{pedido.ValorTotal}";
@@ -203,7 +206,7 @@ namespace RestGuest
         {
             if (lbListaItems.SelectedIndex == -1)
                 return;
-
+            btPagar.Enabled = true;
             Pedido pedido = lbPedidos.SelectedItem as Pedido;
             Cliente cliente = pedido.Cliente;
             restGuest.Pedidos.Attach(pedido);
@@ -306,6 +309,8 @@ namespace RestGuest
             label8.Text = $"{Math.Round(total, 2)} €";
             lbPagar.Text = $"{Math.Round(total, 2)} €";
             numQuantidade.Value = 1;
+            if (lbItemsEscolhidos.Items.Count == 0)
+                btPagar.Enabled = false;
         }
 
         private void lbItemsEscolhidos_SelectedIndexChanged(object sender, EventArgs e)
